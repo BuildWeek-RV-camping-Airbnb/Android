@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.controllers.RegisterController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         // Could have also just use cl_activity_main_parent instead of container
         router = Conductor.attachRouter(this, container, savedInstanceState)
         if(!router.hasRootController()) {
-            router.setRoot(RouterTransaction.with(RegisterController()))
+            router.setRoot(RouterTransaction.with(LoginController()))
         }
     }
 

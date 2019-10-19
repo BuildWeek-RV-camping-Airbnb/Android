@@ -43,7 +43,7 @@ class RegisterController : Controller(){
             validateEmail()
             validatePassword()
             confirmRegister()*/
-            router.popCurrentController()
+            //router.popCurrentController()
         }
 
         view.btn_cancel_registration.setOnClickListener {
