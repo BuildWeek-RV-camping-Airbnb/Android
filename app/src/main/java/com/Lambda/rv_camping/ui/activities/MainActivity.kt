@@ -1,7 +1,8 @@
-package com.Lambda.rv_camping
+package com.Lambda.rv_camping.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.Lambda.rv_camping.R
 
 class MainActivity : AppCompatActivity() {
 
