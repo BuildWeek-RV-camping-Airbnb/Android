@@ -17,9 +17,9 @@ class LoginController : Controller(){
             //Makes it so that the view transitions to Register Controller
             router.pushController(
                 RouterTransaction.with(RegisterController())
-                    //Gives the transition a horizontal slide animation going from MultiplyControl to ResultControl
+                    //Gives the transition a horizontal slide animation going from LoginController to RegisterController
                     .pushChangeHandler(HorizontalChangeHandler())
-                    //Gives the transition a horizontal slide when going backwards.
+                    //Gives the transition a horizontal slide when popping
                     .popChangeHandler(HorizontalChangeHandler()))
         }
         return view

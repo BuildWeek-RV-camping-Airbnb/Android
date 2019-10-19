@@ -1,13 +1,13 @@
 package com.Lambda.rv_camping.ui.controllers
 
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.Lambda.rv_camping.R
 import com.bluelinelabs.conductor.Controller
-import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import kotlinx.android.synthetic.main.controller_register.view.*
+import com.Lambda.rv_camping.util.toastRegister
 
 class RegisterController : Controller(){
 
@@ -26,86 +26,43 @@ class RegisterController : Controller(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_register, container, false)
 
-
-        /*
-        //Makes it so that the view transitions to Result Control
-        router.pushController(
-            RouterTransaction.with(ResultControl())
-            //Gives the transition a horizontal slide animation going from MultiplyControl to ResultControl
-            .pushChangeHandler(HorizontalChangeHandler())
-            //Gives the transition a horizontal slide when going backwards.
-            .popChangeHandler(HorizontalChangeHandler()))*/
-
         view.btn_register_create.setOnClickListener {
-            /*validateFirstName()
+            validateFirstName()
             validateLastName()
             validateUsername()
             validateEmail()
             validatePassword()
-            confirmRegister()*/
-            //router.popCurrentController()
+
+            // If all the information is good, then register the user and go back to login
+            if(validateAllData()){
+                activity?.toastRegister(firstName)
+                router.popToRoot()
+            }
         }
 
         view.btn_cancel_registration.setOnClickListener {
-            router.popCurrentController()
+            router.popToRoot()
         }
 
         return view
     }
 
-}
-/*
-package com.receipttracker.ui
-
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.util.Log
-import android.util.Patterns
-import android.widget.Toast
-import com.receipttracker.R
-import com.receipttracker.model.NewUser
-import com.receipttracker.model.RegisterResponse
-import com.receipttracker.remote.ReceiptTrackerService
-import com.receipttracker.remote.ServiceBuilder
-import kotlinx.android.synthetic.main.activity_register.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
-class RegisterActivity : AppCompatActivity() {
-
-    companion object{
-        var token = ""
-    }
-
-
-
-    //
-    //Making these variables global since they're probably gonna be needed when working with the database
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-
-
-    }
-
     //Checks to see if the entered first name is okay or not.
     private fun validateFirstName(): Boolean {
         //Gets the text from the firstName text input layout
-        firstName = text_input_first_name_register.editText?.text.toString().trim()
+        firstName = view?.text_input_first_name_register?.editText?.text.toString().trim()
 
         if (firstName.isEmpty()) {
-            text_input_first_name_register.error = "Field can't be empty"
+            view?.text_input_first_name_register?.error = "Field can't be empty"
             validatedFirstName = false
             return false
         } else if (firstName.length < 2) {
-            text_input_first_name_register.error = "First name must be at least two characters"
+            view?.text_input_first_name_register?.error = "First name must be at least two characters"
             return false
         } else {
             //Removes the error message if it already exists
-            text_input_first_name_register.error = null
-            text_input_first_name_register.isErrorEnabled = false
+            view?.text_input_first_name_register?.error = null
+            view?.text_input_first_name_register?.isErrorEnabled = false
             validatedFirstName = true
             return true
         }
@@ -114,19 +71,19 @@ class RegisterActivity : AppCompatActivity() {
     //Checks to see if the entered last name is okay or not.
     private fun validateLastName(): Boolean {
         //Gets the text from the lastName text input layout
-        lastName = text_input_last_name_register.editText?.text.toString().trim()
+        lastName = view?.text_input_last_name_register?.editText?.text.toString().trim()
 
         if (lastName.isEmpty()) {
-            text_input_last_name_register.error = "Field can't be empty"
+            view?.text_input_last_name_register?.error = "Field can't be empty"
             validatedLastName = false
             return false
         } else if (lastName.length < 2) {
-            text_input_last_name_register.error = "Last name must be at least two characters"
+            view?.text_input_last_name_register?.error = "Last name must be at least two characters"
             return false
         } else {
             //Removes the error message if it already exists
-            text_input_last_name_register.error = null
-            text_input_last_name_register.isErrorEnabled = false
+            view?.text_input_last_name_register?.error = null
+            view?.text_input_last_name_register?.isErrorEnabled = false
             validatedLastName = true
             return true
         }
@@ -135,19 +92,19 @@ class RegisterActivity : AppCompatActivity() {
     //Checks to see if the entered email is okay or not.
     private fun validateEmail(): Boolean {
         //Gets the text from the email text input layout
-        email = text_input_email_register.editText?.text.toString().trim()
+        email = view?.text_input_email_register?.editText?.text.toString().trim()
 
         if (email.isEmpty()) {
-            text_input_email_register.error = "Field can't be empty"
+            view?.text_input_email_register?.error = "Field can't be empty"
             validatedEmail = false
             return false
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            text_input_email_register.error = "Invalid Email Format"
+            view?.text_input_email_register?.error = "Invalid Email Format"
             return false
         } else {
             //Removes the error message if it already exists
-            text_input_email_register.error = null
-            text_input_email_register.isErrorEnabled = false
+            view?.text_input_email_register?.error = null
+            view?.text_input_email_register?.isErrorEnabled = false
             validatedEmail = true
             return true
         }
@@ -156,26 +113,26 @@ class RegisterActivity : AppCompatActivity() {
     //Checks to see if the entered username is okay or not.
     private fun validateUsername(): Boolean {
         //Gets the text from the username text input layout
-        username = text_input_username_register.editText?.text.toString().trim()
+        username = view?.text_input_username_register?.editText?.text.toString().trim()
 
         if (username.isEmpty()) {
-            text_input_username_register.error = "Field can't be empty"
+            view?.text_input_username_register?.error = "Field can't be empty"
             validatedUsername = false
             return false
         } else if (username.length < 4) {
-            text_input_username_register.error = "Username must be at least four characters"
+            view?.text_input_username_register?.error = "Username must be at least four characters"
             return false
         }
 
         //As of the current time of this else if statement, the current max characters is six.
         //Backend person said that he would change it to 12 in the future.
         else if (username.length > 12) {
-            text_input_username_register.error = "Username can't be more than 12 characters"
+            view?.text_input_username_register?.error = "Username can't be more than 12 characters"
             return false
         } else {
             //Removes the error message if it already exists
-            text_input_username_register.error = null
-            text_input_username_register.isErrorEnabled = false
+            view?.text_input_username_register?.error = null
+            view?.text_input_username_register?.isErrorEnabled = false
             validatedUsername = true
             return true
         }
@@ -184,26 +141,32 @@ class RegisterActivity : AppCompatActivity() {
     //Checks to see if the entered password is okay or not.
     private fun validatePassword(): Boolean {
         //Gets the text from the password text input layout
-        password = text_input_password_register.editText?.text.toString().trim()
+        password = view?.text_input_password_register?.editText?.text.toString().trim()
 
         if (password.isEmpty()) {
-            text_input_password_register.error = "Field can't be empty"
+            view?.text_input_password_register?.error = "Field can't be empty"
             validatedPassword = false
             return false
         } else if (password.length < 4) {
-            text_input_password_register.error = "Password must be at least four characters"
+            view?.text_input_password_register?.error = "Password must be at least four characters"
             return false
         } else if (password.length > 12) {
-            text_input_password_register.error = "Password can't be more than 12 characters"
+            view?.text_input_password_register?.error = "Password can't be more than 12 characters"
             return false
         } else {
             //Removes the error message if it already exists
-            text_input_password_register.error = null
-            text_input_password_register.isErrorEnabled = false
+            view?.text_input_password_register?.error = null
+            view?.text_input_password_register?.isErrorEnabled = false
             validatedPassword = true
             return true
         }
     }
+
+    fun validateAllData(): Boolean{
+        return validatedFirstName && validatedLastName && validatedEmail && validatedUsername && validatedPassword
+    }
+}
+/*
 
     //Checks to see if all the fields are correct or not. If so, return back to the login page.
     private fun confirmRegister() {
@@ -220,6 +183,7 @@ class RegisterActivity : AppCompatActivity() {
         finish()
     }
 
+
     private fun createUserr(){
         val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))
 
@@ -234,7 +198,5 @@ class RegisterActivity : AppCompatActivity() {
             }
         })
     }
-}
-
 
 */

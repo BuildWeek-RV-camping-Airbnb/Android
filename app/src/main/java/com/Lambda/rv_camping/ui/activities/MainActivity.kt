@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.ViewGroup
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.ui.controllers.LoginController
-import com.Lambda.rv_camping.ui.controllers.RegisterController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
