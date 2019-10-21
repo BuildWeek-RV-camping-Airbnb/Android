@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.view.forEach
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.Lambda.rv_camping.ui.controllers.AddPlaceController.*
 import com.bluelinelabs.conductor.Controller
@@ -29,8 +31,11 @@ class ItemDetailController: Controller{
         val view = inflater.inflate(R.layout.item_view, container,false)
 
         val list = args.getSerializable(MainActivity.BUNDLE_KEY)
+        val spot = mutableListOf<CampingSpots>()
 
-        view.textView.setText(list?.toString())
+    spot.forEach {
+                view.textView.text = list?.toString()
+            }
 
         return view
 
@@ -43,11 +48,9 @@ class ItemDetailController: Controller{
         changeType: ControllerChangeType
     ) {
         super.onChangeEnded(changeHandler, changeType)
-        view?.findViewById<Button>(R.id.mButtonReserve)?.setOnClickListener {
-            router.pushController(RouterTransaction.with(AddPlaceController(args))
-                        .pushChangeHandler(HorizontalChangeHandler())
-                        .popChangeHandler(HorizontalChangeHandler())
-                )
+        view?.findViewById<Button>(R.id.mButtonAddPlace)?.setOnClickListener {
+            router.popCurrentController()
+
             }
         }
     }
