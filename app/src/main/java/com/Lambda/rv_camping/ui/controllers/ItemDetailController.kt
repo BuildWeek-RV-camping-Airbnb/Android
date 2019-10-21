@@ -22,13 +22,13 @@ import kotlinx.android.synthetic.main.item_view.view.*
 class ItemDetailController: Controller{
     constructor(): super()
     constructor(args: Bundle?): super(args){
-        args?.getStringArrayList(MainActivity.BUNDLE_KEY)
+        args?.getSerializable(MainActivity.BUNDLE_KEY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.item_view, container,false)
 
-        val list = args.getStringArrayList(MainActivity.BUNDLE_KEY)
+        val list = args.getSerializable(MainActivity.BUNDLE_KEY)
 
         view.textView.setText(list?.toString())
 
