@@ -24,10 +24,15 @@ class MainActivity : AppCompatActivity() {
     private val container: ViewGroup by lazy {
         this.findViewById<ViewGroup>(R.id.cl_activity_main_parent)
     }
-    private val campingList = mutableListOf(
-        CampingSpots("djlkj","1"),
-        CampingSpots("ds","2"))
+    companion object {
+        val campingList = mutableListOf(
+            CampingSpots("djlkj", "1"),
+            CampingSpots("ds", "2")
 
+        )
+        val BUNDLE_KEY = "key"
+        val rvAdapter = RecyclerRVAdapter(campingList)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

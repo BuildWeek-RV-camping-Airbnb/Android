@@ -1,6 +1,8 @@
 package com.Lambda.rv_camping.model
 
-class CampingSpots{
+import java.io.Serializable
+
+class CampingSpots : Serializable{
     var id: String? =null
     private var details: String? = null
 
@@ -8,8 +10,8 @@ class CampingSpots{
         this.details = details
         this.id = id
     }
-    constructor(campingSpots: CampingSpots){
-        this.details = campingSpots.details
-        this.id = campingSpots.id
+    constructor(campingSpots: String){
+        this.details = campingSpots
+        this.id = campingSpots
     }
 }

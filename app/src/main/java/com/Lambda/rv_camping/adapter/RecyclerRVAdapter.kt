@@ -24,6 +24,9 @@ import kotlinx.android.synthetic.main.item_view.view.*
 
 class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     : RecyclerView.Adapter<RecyclerRVAdapter.MyViewHolder>(){
+
+    val spots = mutableListOf<CampingSpots>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         context = parent.context
         val view = LayoutInflater.from(context).inflate(R.layout.item_view, parent, false)
@@ -55,6 +58,11 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
         val detail: TextView =view.textView
 
 
+    }
+    fun updateItems(spots: List<CampingSpots>){
+        this.spots.clear()
+        this.spots.addAll(spots)
+        notifyDataSetChanged()
     }
 
 }
