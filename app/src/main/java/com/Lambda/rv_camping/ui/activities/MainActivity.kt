@@ -32,37 +32,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-
-
-            // Could have also just use cl_activity_main_parent instead of container
+        // Could have also just use cl_activity_main_parent instead of container
             router = Conductor.attachRouter(this, container, savedInstanceState)
             if (!router.hasRootController()) {
                 router.setRoot(RouterTransaction.with(MainActivityController()))
 
-                mButtonReserve?.setOnClickListener {
-                    router.pushController(
-                        RouterTransaction.with(ItemDetailController())
-                            .pushChangeHandler(HorizontalChangeHandler())
-                            .popChangeHandler(HorizontalChangeHandler())
-                    )
+                vRecycle.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = RecyclerRVAdapter(campingList)
                 }
 
             }
 
 
-        vRecycle.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = RecyclerRVAdapter(campingList)
 
-        }
 
 
     }
+
+
 
 
     override fun onBackPressed(){
         router.popCurrentController()
     }
+
 
 }
