@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.R.color.colorAccent
@@ -39,11 +40,15 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
         holder.detail.text = data.details.toString()
 
         holder.button.setOnClickListener {
+
+
             val intent = Intent(context, ReservePlaceActivity::class.java)
             context?.startActivity(intent)
 
 
+
         }
+
 
 
 
@@ -56,6 +61,8 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
         val detail: TextView =view.textView
         val button = view.mButtonReserve
+
+
 
 
     }
