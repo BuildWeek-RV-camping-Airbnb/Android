@@ -39,8 +39,7 @@ class ItemDetailController: Controller{
 
         return view
 
-
-
+        
     }
 
     override fun onChangeEnded(
