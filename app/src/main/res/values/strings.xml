@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RV-Camping</string>
+    <string name="reserve">RESERVE</string>
+    <string name="this_place_is_amazing_that_sits_at_top_of_the_mountain_so_you_can_learn_how_to_fly">This place is amazing that sits at top of the mountain so you can learn how to fly</string>
+    <string name="pick_date_from">pick date from</string>
+    <string name="to">TO</string>
+    <string name="pick_date_to">pick date to</string>
+    <string name="price">4.99</string>
 </resources>
