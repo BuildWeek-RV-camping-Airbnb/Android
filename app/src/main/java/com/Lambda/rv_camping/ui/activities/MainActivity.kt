@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.controllers.MainController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
@@ -32,16 +33,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Could have also just use cl_activity_main_parent instead of container
-            router = Conductor.attachRouter(this, container, savedInstanceState)
-            if (!router.hasRootController()) {
-                router.setRoot(RouterTransaction.with(MainController()))
-
-                vRecycle.apply {
+        vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = RecyclerRVAdapter(campingList)
 
-                }
+        }
+
+        // Could have also just use cl_activity_main_parent instead of container
+            router = Conductor.attachRouter(this, container, savedInstanceState)
+            if (!router.hasRootController()) {
+                router.setRoot(RouterTransaction.with(LoginController()))
+
+
 
             }
 

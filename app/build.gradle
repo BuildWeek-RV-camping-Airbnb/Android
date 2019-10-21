@@ -73,5 +73,11 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-livedata-core:2.1.0"
 
+    //For the fancy wave effect
+    implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-alpha-1'
+
+
+    //Motion
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
 
 }

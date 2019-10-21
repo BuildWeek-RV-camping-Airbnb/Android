@@ -85,4 +85,21 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"/>
 
+
+    <com.scwang.wave.MultiWaveHeader
+
+        android:id="@+id/wave"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:rotation="180"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:mwhCloseColor="@color/colorPrimary"
+        app:mwhStartColor="@color/colorPrimary"
+        app:mwhWaves="
+            70,25,1.4,1.4,-26
+            100,5,1.4,1.2,15
+            420,0,1.15,1,-10
+            520,10,1.7,1.5,20
+            220,0,1,1,-15" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
