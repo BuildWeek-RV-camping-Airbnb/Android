@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 
@@ -34,8 +35,9 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
         val data = dataList[position]
         holder.detail.text = data.details.toString()
 
-
-
+        holder.button.setOnClickListener {
+            Toast.makeText(context, "Position : $position", Toast.LENGTH_LONG).show()
+        }
     }
 
     private var context: Context? = null
@@ -43,7 +45,7 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         val detail: TextView =view.textView
-
+        val button = view.mButtonReserve
 
     }
   // fun updateItems(spots: List<CampingSpots>){
