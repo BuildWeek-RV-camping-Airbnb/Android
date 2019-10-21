@@ -26,6 +26,10 @@ class LoginController : Controller(){
         view.btn_login.setOnClickListener {
             validateUsername()
             validatePassword()
+
+            router.pushController(RouterTransaction.with(MainController())
+                .pushChangeHandler(HorizontalChangeHandler())
+                .popChangeHandler(HorizontalChangeHandler()))
             Toast.makeText(activity, "ADD YOUR TRANSITION LOGIC HERE AT LINE 29 OF THE LOGIC CONTROLLER", Toast.LENGTH_SHORT).show()
         }
 

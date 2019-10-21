@@ -1,14 +1,19 @@
 package com.Lambda.rv_camping.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.R.color.colorAccent
+import com.Lambda.rv_camping.R.color.someColor
 
 import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import kotlinx.android.synthetic.main.item_view.view.*
 
 class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
@@ -34,6 +39,18 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
         val data = dataList[position]
         holder.detail.text = data.details.toString()
 
+        holder.button.setOnClickListener {
+
+
+            val intent = Intent(context, ReservePlaceActivity::class.java)
+            context?.startActivity(intent)
+
+
+
+        }
+
+
+
 
 
     }
@@ -43,6 +60,9 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
 
         val detail: TextView =view.textView
+        val button = view.mButtonReserve
+
+
 
 
     }
