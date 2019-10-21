@@ -4,7 +4,7 @@ import java.io.Serializable
 
 class CampingSpots : Serializable{
     var id: String? =null
-    private var details: String? = null
+    var details: String? = null
 
     constructor(details: String, id: String){
         this.details = details

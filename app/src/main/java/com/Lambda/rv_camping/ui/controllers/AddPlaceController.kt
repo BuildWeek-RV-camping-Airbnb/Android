@@ -24,14 +24,14 @@ class AddPlaceController : Controller{
             val spot = mutableListOf<CampingSpots>()
             val title = view.mTitleText.getString()
             val detail =  view.mDescriptionText.getString()
-            for (it in spot) {
-                spot.add(CampingSpots(title, detail))
-            }
-
-            args.putString(MainActivity.BUNDLE_KEY,  detail )
+         //  for (it in spot) {
+         //      spot.add(CampingSpots(title, detail))
+         //  }
+            MainController.campingList.add(CampingSpots(title, detail))
+            args.putSerializable(MainActivity.BUNDLE_KEY,  CampingSpots(title, detail) )
 
             router.pushController(
-                RouterTransaction.with(ItemDetailController(args))
+                RouterTransaction.with(MainController(args))
                     .pushChangeHandler(HorizontalChangeHandler())
                     .popChangeHandler(HorizontalChangeHandler())
             )
