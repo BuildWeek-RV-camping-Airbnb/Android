@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.R.color.colorAccent
+import com.Lambda.rv_camping.R.color.someColor
 
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
@@ -40,7 +42,9 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
             val intent = Intent(context, ReservePlaceActivity::class.java)
             context?.startActivity(intent)
 
+
         }
+
 
 
 
@@ -52,6 +56,7 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
         val detail: TextView =view.textView
         val button = view.mButtonReserve
+
 
     }
   // fun updateItems(spots: List<CampingSpots>){
