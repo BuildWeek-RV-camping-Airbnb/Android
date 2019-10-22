@@ -38,9 +38,15 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
         holder.detail.text = data.details.toString()
+//if reservers
+        if(data.isReserved == true) {
 
-        holder.button.setOnClickListener {
 
+            holder.button.visibility = View.GONE
+        }
+            holder.button.setOnClickListener {
+                data.isReserved = true
+                    notifyDataSetChanged()
 
             val intent = Intent(context, ReservePlaceActivity::class.java)
             context?.startActivity(intent)
