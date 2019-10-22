@@ -32,6 +32,7 @@ class AddPlaceActivity : AppCompatActivity() {
         val title = mTitleText.text.toString().trim()
         val description = mDescriptionText.text.toString().trim()
 
+
         MainActivity.campingList.add(CampingSpots(title, description))
         val intent = Intent(this@AddPlaceActivity, MainActivity::class.java)
         startActivity(intent)
