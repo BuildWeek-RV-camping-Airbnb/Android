@@ -5,23 +5,30 @@ import java.io.Serializable
 class CampingSpots : Serializable{
     var id: String? =null
     var image: Int? = null
-    var title: String? = null
-    var details: String? = null
+    var property_name: String? = null
+    var address: String? = null
+    var description: String? = null
+    var price: Int? = null
     var reserved: String? = null
     var isReserved: Boolean? = false
 
     constructor(details: String, title: String){
-        this.details = details
+        this.description = details
       //  this.id = id
-        this.title = title
+        this.property_name = title
+        this.address = address
+        this.price = price
+
 
 
 
     }
     constructor(campingSpots: String){
-        this.details = campingSpots
+        this.description = campingSpots
         //this.id = campingSpots
-        this.title = campingSpots
+        this.property_name = campingSpots
+        this.address = campingSpots
+        this.price = campingSpots.toInt()
 
     }
 }

@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         // Could have also just use cl_activity_main_parent instead of container
             router = Conductor.attachRouter(this, container, savedInstanceState)
             if (!router.hasRootController()) {
-                router.setRoot(RouterTransaction.with(LoginController()))
+                router.setRoot(RouterTransaction.with(MainController()))
 
 
 

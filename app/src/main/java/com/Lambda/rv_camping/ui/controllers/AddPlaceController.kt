@@ -25,7 +25,7 @@ class AddPlaceController : Controller{
             val title = view.mTitleText.getString()
             val detail =  view.mDescriptionText.getString()
          //  for (it in spot) {
-         //      spot.add(CampingSpots(title, detail))
+         //      spot.add(CampingSpots(property_name, description))
          //  }
             MainController.campingList.add(CampingSpots(title, detail))
             args.putSerializable(MainActivity.BUNDLE_KEY,  CampingSpots(title, detail) )
