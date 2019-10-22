@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        vRecycle.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = RecyclerRVAdapter(campingList)
+
+        }
 
         vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
