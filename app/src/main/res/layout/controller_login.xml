@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/iv_app_icon"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/rv_camping"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
