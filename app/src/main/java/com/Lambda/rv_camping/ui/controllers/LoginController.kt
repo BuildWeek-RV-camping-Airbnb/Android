@@ -1,18 +1,32 @@
 package com.Lambda.rv_camping.ui.controllers
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.model.User
+import com.Lambda.rv_camping.networking.ApiBuilder
+import com.Lambda.rv_camping.util.gone
+import com.Lambda.rv_camping.util.show
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import kotlinx.android.synthetic.main.controller_login.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginController : Controller(){
+
+    // TEST ACCOUNT USERNAME: Jessica PASSWORD: qwerty
+
+    companion object{
+        var successfulLogin:Boolean = false
+    }
 
     private var validatedUsername: Boolean = false
     private var validatedPassword: Boolean = false
@@ -22,14 +36,13 @@ class LoginController : Controller(){
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_login, container, false)
+        view.pb_login.gone()
 
         view.btn_login.setOnClickListener {
             validateUsername()
             validatePassword()
+            getAllUsers()
 
-            router.pushController(RouterTransaction.with(MainController())
-                .pushChangeHandler(HorizontalChangeHandler())
-                .popChangeHandler(HorizontalChangeHandler()))
         }
 
         view.btn_register.setOnClickListener {
@@ -104,6 +117,41 @@ class LoginController : Controller(){
             validatedPassword = true
             return true
         }
+    }
+
+    fun getAllUsers(){
+        val call:Call<List<User>> = ApiBuilder.create().getAllUsers()
+        call.enqueue(object: Callback<List<User>>{
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Log.i("Networking:", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                if(response.isSuccessful){
+                    Log.i("Networking", "123 ${response.body()}")
+                    val listOfUsers: List<User>? = response.body()
+                    listOfUsers?.forEach {
+                        if(it.username == username && it.password == password){
+                            successfulLogin = true
+                            view?.pb_login?.show()
+                        }
+                    }
+                    if(successfulLogin == false){
+                        Toast.makeText(activity, "Incorrect Username or Password", Toast.LENGTH_SHORT).show()
+                    }
+                    if(successfulLogin){
+                        successfulLogin = false
+                        router.pushController(RouterTransaction.with(MainController())
+                            .pushChangeHandler(HorizontalChangeHandler())
+                            .popChangeHandler(HorizontalChangeHandler()))
+                    }
+                }
+                else{
+                    Log.i("Networking", "456 ${response.errorBody()}")
+                }
+            }
+
+        })
     }
 
 }
