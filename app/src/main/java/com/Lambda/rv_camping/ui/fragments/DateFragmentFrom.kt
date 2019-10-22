@@ -6,13 +6,14 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
+import kotlinx.android.synthetic.main.activity_reserve_place.*
 import java.util.*
 
-class DateFragment: DialogFragment(), DatePickerDialog.OnDateSetListener{
+class DateFragmentFrom: DialogFragment(), DatePickerDialog.OnDateSetListener{
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         val editable = SpannableStringBuilder("$year-$month-$day")
-        context?.text_purchase_date_add?.editText?.text = editable
+        activity?.mTextDateFrom?.text = editable
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
