@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_reserve_place.*
 class ReservePlaceActivity : AppCompatActivity() {
 
     companion object{
-        const val PASSED_DATE = "Passed Date"
+        const val PASSED_DATE = "999"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,10 +30,11 @@ class ReservePlaceActivity : AppCompatActivity() {
             val fragment = DateFragmentTo()
             fragment.show(supportFragmentManager, "datePickerTo")
         }
-
+        val dateFrom = mTextDateFrom?.text.toString()
+        val dateTo = mTextDateTo?.text.toString()
         mButtonReservePlace.setOnClickListener {
-            val dateIntent = Intent(this, MainController::class.java)
-            dateIntent.putExtra(PASSED_DATE, "Successfully reserved for: $mTextDateFrom until $mTextDateTo")
+            val dateIntent = Intent(this, ReservePlaceActivity::class.java)
+            dateIntent.putExtra(PASSED_DATE, "Successfully reserved for: $dateFrom $dateTo")
            finish()
 
 

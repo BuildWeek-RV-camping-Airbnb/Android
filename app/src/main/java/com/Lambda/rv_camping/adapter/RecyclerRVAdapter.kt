@@ -11,12 +11,17 @@ import com.Lambda.rv_camping.R
 
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
+import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity.Companion.PASSED_DATE
 import kotlinx.android.synthetic.main.item_view.view.*
 
 class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     : RecyclerView.Adapter<RecyclerRVAdapter.MyViewHolder>(){
 
-    val spots = mutableListOf<CampingSpots>()
+
+
+
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         context = parent.context
@@ -44,8 +49,10 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
         if(data.isReserved == true) {
 
+
             holder.datePassingText.visibility = View.VISIBLE
-            holder.datePassingText.text = ""
+            val intent = Intent().getStringExtra(PASSED_DATE)
+            holder.datePassingText.text = intent
             holder.button.visibility = View.GONE
         }
             holder.button.setOnClickListener {
@@ -74,6 +81,7 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
         val detail: TextView =view.mDetailsTexts
         val button = view.mButtonReserve
         val datePassingText = view.mTextReservedDate
+
 
 
 
