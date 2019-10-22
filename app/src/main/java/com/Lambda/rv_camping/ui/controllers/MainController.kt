@@ -24,8 +24,8 @@ class MainController : Controller {
 
     companion object {
         val campingList = mutableListOf(
-            CampingSpots("djlkj", "1"),
-            CampingSpots("ds", "2")
+            CampingSpots("This cool place is on Mile marker nine of HWY 66. Great view and area for kids to play on","HWY 66"),
+            CampingSpots("Located at 99 S Ute Dr Nevada Desert, Nevada, 10111. This location is great for campers that like UFOs", "UFO Campground")
 
         )
         val BUNDLE_KEY = "key"

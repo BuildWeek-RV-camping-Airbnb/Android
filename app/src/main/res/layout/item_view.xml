@@ -8,7 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="150dp">
+    android:layout_height="220dp">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:id="@+id/mmmm"
@@ -17,6 +17,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <TextView
+            android:id="@+id/mTitleText"
+            android:layout_width="232dp"
+            android:layout_height="19dp"
+            android:text="Title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.079" />
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,10 +40,10 @@
             app:layout_constraintHorizontal_bias="0.942"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintVertical_bias="0.145" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/mDetailsTexts"
             android:layout_width="221dp"
             android:layout_height="56dp"
             android:text="this great camping spot is full of trees and bugs that bite. Not to mention wild animals. Trust me! You will love it!"
@@ -42,6 +54,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.255" />
 
+        <TextView
+            android:id="@+id/mTextReservedDate"
+            android:layout_width="107dp"
+            android:layout_height="37dp"
+            android:text="Reserve"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.103"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
+            app:layout_constraintVertical_bias="0.2" />
+
         <Button
             android:id="@+id/mButtonReserve"
             android:layout_width="wrap_content"
@@ -49,8 +73,10 @@
             android:text="Reserve"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.858"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
+            app:layout_constraintVertical_bias="0.09" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
