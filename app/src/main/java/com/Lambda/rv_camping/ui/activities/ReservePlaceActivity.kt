@@ -3,6 +3,7 @@ package com.Lambda.rv_camping.ui.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import kotlinx.android.synthetic.main.activity_reserve_place.*
 
@@ -12,9 +13,14 @@ class ReservePlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserve_place)
 
+        mTextDateFrom.setOnClickListener {
+            val fragment = DateFragmentFrom()
+            fragment.show(supportFragmentManager, "datePickerFrom")
+        }
+
         mTextDateTo.setOnClickListener {
             val fragment = DateFragmentTo()
-            fragment.show(supportFragmentManager, "datePicker")
+            fragment.show(supportFragmentManager, "datePickerTo")
         }
 
         mButtonReservePlace.setOnClickListener {
