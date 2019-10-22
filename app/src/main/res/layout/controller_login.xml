@@ -7,6 +7,14 @@
     android:layout_margin="16dp"
     tools:context=".ui.controllers.LoginController">
 
+    <ProgressBar
+        android:id="@+id/pb_login"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:id="@+id/iv_app_icon"
         android:src="@drawable/rv_camping"
