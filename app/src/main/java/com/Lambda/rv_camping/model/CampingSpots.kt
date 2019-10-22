@@ -16,6 +16,7 @@ class CampingSpots : Serializable{
         this.title = title
 
 
+
     }
     constructor(campingSpots: String){
         this.details = campingSpots

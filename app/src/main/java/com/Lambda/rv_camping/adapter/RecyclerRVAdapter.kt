@@ -1,5 +1,6 @@
 package com.Lambda.rv_camping.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -16,9 +17,6 @@ import kotlinx.android.synthetic.main.item_view.view.*
 
 class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
     : RecyclerView.Adapter<RecyclerRVAdapter.MyViewHolder>(){
-
-
-
 
 
 
@@ -40,21 +38,22 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
-
+        val intent = Intent().getStringExtra(PASSED_DATE)
         holder.title.text = data.details.toString()
         holder.detail.text = data.details.toString()
-        holder.datePassingText.visibility = View.GONE
+        holder.datePassingText.text = intent
 
-//if reservers
+
+//if reserved
 
         if(data.isReserved == true) {
 
 
-            holder.datePassingText.visibility = View.VISIBLE
-            val intent = Intent().getStringExtra(PASSED_DATE)
-            holder.datePassingText.text = intent
+
+
             holder.button.visibility = View.GONE
         }
+
             holder.button.setOnClickListener {
 
 
@@ -63,7 +62,6 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
             val intent = Intent(context, ReservePlaceActivity::class.java)
             context?.startActivity(intent)
-
 
 
         }
