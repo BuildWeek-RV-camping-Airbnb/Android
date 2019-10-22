@@ -78,6 +78,6 @@ dependencies {
 
 
     //Motion
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
 
 }
