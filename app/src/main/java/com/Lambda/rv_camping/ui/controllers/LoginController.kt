@@ -8,6 +8,8 @@ import android.widget.Toast
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.User
 import com.Lambda.rv_camping.networking.ApiBuilder
+import com.Lambda.rv_camping.util.gone
+import com.Lambda.rv_camping.util.show
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -20,6 +22,8 @@ import retrofit2.Response
 
 class LoginController : Controller(){
 
+    // TEST ACCOUNT USERNAME: Jessica PASSWORD: qwerty
+
     companion object{
         var successfulLogin:Boolean = false
     }
@@ -28,10 +32,11 @@ class LoginController : Controller(){
     private var validatedPassword: Boolean = false
 
     lateinit var username: String
-    lateinit var password: String // Jessica qwerty
+    lateinit var password: String
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_login, container, false)
+        view.pb_login.gone()
 
         view.btn_login.setOnClickListener {
             validateUsername()
@@ -128,9 +133,12 @@ class LoginController : Controller(){
                     listOfUsers?.forEach {
                         if(it.username == username && it.password == password){
                             successfulLogin = true
+                            view?.pb_login?.show()
                         }
                     }
-
+                    if(successfulLogin == false){
+                        Toast.makeText(activity, "Incorrect Username or Password", Toast.LENGTH_SHORT).show()
+                    }
                     if(successfulLogin){
                         successfulLogin = false
                         router.pushController(RouterTransaction.with(MainController())
