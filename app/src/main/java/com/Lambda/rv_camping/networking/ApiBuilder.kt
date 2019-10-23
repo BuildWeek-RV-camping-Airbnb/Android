@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
@@ -23,7 +24,7 @@ interface ApiBuilder {
     fun createUser(@Body user: User): Call<UserResponse>
 
     @GET("api/properties")
-    fun getAllProperties(): Call<Properties>
+    fun getAllProperties(@Header("Authorization") authToken: String): Call<Properties>
 
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"
