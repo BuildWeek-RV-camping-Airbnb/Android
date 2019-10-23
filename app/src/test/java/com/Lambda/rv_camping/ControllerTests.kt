@@ -1,25 +1,17 @@
 package com.Lambda.rv_camping
 
-import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.ui.controllers.LoginController
 import org.junit.Test
-import org.amshove.kluent.shouldEqual
-import org.amshove.kluent.shouldNotEqual
 
 
 class ControllerTests {
-
-val textCorrect = CampingSpots("Fake name", "Fake Description", "Fake Address", 2f)
-val textFail = CampingSpots("Fake name", "Fake Description", "Fake Address", 2f)
+    //LoginController
 
     @Test
-    fun testCorrectFun(){
-
-        textCorrect.address shouldEqual "Fake Address"
-        textCorrect.description shouldEqual "Fake Description"
-        textCorrect.price shouldEqual 2f
-
+    fun testCorrectProperties(){
+        val test = LoginController
+        test.properties
 
     }
-
 
 }
