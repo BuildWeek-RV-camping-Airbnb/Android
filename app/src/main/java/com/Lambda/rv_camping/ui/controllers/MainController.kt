@@ -64,6 +64,8 @@ class MainController : Controller {
 
         val view = inflater.inflate(R.layout.activity_main, container, false)
 
+        getAllProperties()
+
         view?.myButton?.setOnClickListener {
             router.pushController(
                 RouterTransaction.with(AddPlaceController())
@@ -73,7 +75,6 @@ class MainController : Controller {
         view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = RecyclerRVAdapter(campingList)
-            getAllProperties()
         }
 
 
@@ -91,7 +92,8 @@ class MainController : Controller {
             )
         }
     }
-    fun getAllProperties(){
+    /*
+    fun getAllPropertiesNotInUse(){
         val call: Call<List<CampingSpots>> = PlaceApiBuilder.create().getAllProperties()
         call.enqueue(object: Callback<List<CampingSpots>> {
             override fun onFailure(call: Call<List<CampingSpots>>, t: Throwable) {
@@ -106,6 +108,28 @@ class MainController : Controller {
 
 
 
+            }
+
+        })
+    }*/
+
+    fun getAllProperties(){
+        val call: Call<List<Properties>> = ApiBuilder.create().getAllProperties()
+        call.enqueue(object: Callback<List<Properties>>{
+            override fun onFailure(call: Call<List<Properties>>, t: Throwable) {
+                Log.i("Properties", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(
+                call: Call<List<Properties>>,
+                response: Response<List<Properties>>
+            ) {
+                if(response.isSuccessful){
+                    Log.i("Properties", "onResponseSuccessful ${response.body()}")
+                }
+                else{
+                    Log.i("Properties", "onResponseFailure ${response.errorBody()}")
+                }
             }
 
         })
