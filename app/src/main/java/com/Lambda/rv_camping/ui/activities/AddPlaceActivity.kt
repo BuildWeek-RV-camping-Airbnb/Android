@@ -36,6 +36,7 @@ class AddPlaceActivity : AppCompatActivity() {
 
 
         MainActivity.campingList.add(CampingSpots(title, address, description, price.toFloat()))
+
         val intent = Intent(this@AddPlaceActivity, MainActivity::class.java)
         startActivity(intent)
 
