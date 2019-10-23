@@ -9,31 +9,35 @@ import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
+import com.Lambda.rv_camping.model.Property
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class PropertiesAdapter (private val propertyList: MutableList<Properties>) : RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
+class PropertiesAdapter (private val properties: MutableList<Property>?) : RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
         return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return propertyList.size
+        if (properties != null) {
+            return properties.size
+        }
+        return 10
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {/*
-        val currentProperty = propertyList[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val currentProperty = properties?.get(position)
 
-        holder.propertyName.text = currentProperty.property_name
-        holder.description.text = currentProperty.description
-        holder.address.text = currentProperty.address
-        holder.city.text = currentProperty.city
-        holder.state.text = currentProperty.state
-        val price = "$ " + currentProperty.price.toString()
+        holder.propertyName.text = currentProperty?.property_name
+        holder.description.text = currentProperty?.description
+        holder.address.text = currentProperty?.address
+        holder.city.text = currentProperty?.city
+        holder.state.text = currentProperty?.state
+        val price = "$ " + currentProperty?.price.toString()
         holder.price.text = price
-        val rating = currentProperty.rating.toString() + "/5"
-        holder.rating.text = rating*/
+        val rating = currentProperty?.rating.toString() + "/5"
+        holder.rating.text = rating
     }
 
 
@@ -46,7 +50,6 @@ class PropertiesAdapter (private val propertyList: MutableList<Properties>) : Re
         val state: TextView = itemView.tv_property_state
         val price: TextView = itemView.tv_property_price
         val rating: TextView = itemView.tv_property_rating
-
     }
 
 }

@@ -48,7 +48,8 @@ class MainController : Controller {
 
         )
 
-        val propertyList = mutableListOf<Property>(
+
+        var propertyListt = mutableListOf<Property>(
             Property(1, "testName", "testDescription", "testAddress", "testCity",
                 "testState", "testImage", 1, 1, 1)
         )
@@ -63,8 +64,8 @@ class MainController : Controller {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
-
         val view = inflater.inflate(R.layout.activity_main, container, false)
+
 
         //getAllProperties()
 

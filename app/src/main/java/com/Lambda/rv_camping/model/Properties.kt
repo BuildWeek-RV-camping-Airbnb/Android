@@ -14,5 +14,5 @@ data class Property (
 )
 
 data class Properties(
-    val properties: List<Property>
+    var properties: MutableList<Property>
 )

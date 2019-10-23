@@ -8,10 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.PropertiesAdapter
-import com.Lambda.rv_camping.model.Properties
-import com.Lambda.rv_camping.model.User
-import com.Lambda.rv_camping.model.UserLogin
-import com.Lambda.rv_camping.model.UserResponse
+import com.Lambda.rv_camping.model.*
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.util.gone
 import com.Lambda.rv_camping.util.show
@@ -35,6 +32,8 @@ class LoginController : Controller(){
     companion object{
         var successfulLogin:Boolean = false
         lateinit var token: String
+
+        var properties: MutableList<Property>? = null
     }
 
     private var validatedUsername: Boolean = false
@@ -44,7 +43,6 @@ class LoginController : Controller(){
     lateinit var password: String
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-
 
         getAllProperties()
 
@@ -73,7 +71,6 @@ class LoginController : Controller(){
         //TODO REMOVE THIS ON OFFICIAL RELEASE!!!
         view.btn_login_skip.setOnClickListener {
 
-            getAllProperties()
             router.pushController(RouterTransaction.with(MainController())
                 .pushChangeHandler(HorizontalChangeHandler())
                 .popChangeHandler(HorizontalChangeHandler()))
@@ -177,30 +174,22 @@ class LoginController : Controller(){
 
     fun getAllProperties(){
         val call: Call<Properties> = ApiBuilder.create().getAllProperties()
+
         call.enqueue(object: Callback<Properties>{
             override fun onFailure(call: Call<Properties>, t: Throwable) {
-                Log.i("Properties", "OnFailure ${t.message}")
+                Log.i("Properties ", "onFailure ${t.message}")
             }
 
-            override fun onResponse(
-                call: Call<Properties>,
-                response: Response<Properties>
-            ) {
+            override fun onResponse(call: Call<Properties>, response: Response<Properties>) {
                 if(response.isSuccessful){
-                    Log.i("Properties", "onResponseSuccessful ${response.body()}")
-                    val properties: List<Properties>?
-//                    properties?.forEach {
-//                        MainController.propertyList.add(
-////                            Properties(it.id, it.property_name, it.description, it.address,
-////                                it.city, it.state, it.image, it.price, it.rating, it.owner_id)
-//                        )
-                    }
-
-                    view?.vRecycle?.apply {
-                        layoutManager = LinearLayoutManager(activity)
-                        //adapter = PropertiesAdapter(MainController.propertyList)
-                    }
+                    var list = response.body()
+                    properties = list?.properties
                 }
+                else{
+                    Log.i("Properties ", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
         })
     }
 
