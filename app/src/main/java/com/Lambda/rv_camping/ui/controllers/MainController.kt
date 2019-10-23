@@ -27,20 +27,14 @@ import com.google.android.gms.maps.MapFragment
 
 
 
-class MainController : Controller, OnMapReadyCallback {
+class MainController : Controller {
 
     var mMap: GoogleMap? = null
 
     private var item: Properties? = null
 
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
 
-        val lat =  0.0
-        val lon = item?.properties
-
-    }
 
     companion object {
         val campingList = mutableListOf(
@@ -89,9 +83,9 @@ class MainController : Controller, OnMapReadyCallback {
             adapter = PropertiesAdapter(LoginController.properties)
         }
 
-        val mapFragment = (R.id.map) as MapFragment
-        mapFragment.getMapAsync(this)
-/*getCurrentLocation()*/
+
+
+
         return view
     }
     override fun onChangeEnded(
