@@ -11,7 +11,7 @@ import com.Lambda.rv_camping.util.getString
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
-import kotlinx.android.synthetic.main.activity_add_place.view.*
+import kotlinx.android.synthetic.main.controller_add_property.view.*
 
 class AddPlaceController : Controller{
 
@@ -19,7 +19,7 @@ class AddPlaceController : Controller{
     constructor(args: Bundle?):super(args)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-     val view = inflater.inflate(R.layout.activity_add_place, container, false)
+     val view = inflater.inflate(R.layout.controller_add_property, container, false)
         view?.mButtonAddPlace?.setOnClickListener {
             val spot = mutableListOf<CampingSpots>()
             val title = view.mTitleText.getString()

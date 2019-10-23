@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.bluelinelabs.conductor.Router
-import kotlinx.android.synthetic.main.activity_add_place.*
+import kotlinx.android.synthetic.main.controller_add_property.*
 
 class AddPlaceActivity : AppCompatActivity() {
 
@@ -19,7 +19,7 @@ class AddPlaceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_place)
+        setContentView(R.layout.controller_add_property)
 
 
         mButtonAddPlace.setOnClickListener {
