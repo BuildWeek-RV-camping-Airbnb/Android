@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.UserResponse
 import com.Lambda.rv_camping.model.User
@@ -196,6 +197,7 @@ class RegisterController : Controller() {
                     LoginController.token = response.body()!!.token
                 }
                 else{
+                    Toast.makeText(activity, "Data has been entered incorrectly", Toast.LENGTH_SHORT).show()
                     Log.i("Register", "456 ${response.errorBody()}")
                 }
 
