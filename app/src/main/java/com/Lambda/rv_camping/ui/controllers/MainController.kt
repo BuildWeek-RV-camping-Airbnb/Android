@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.User
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.networking.PlaceApiBuilder
@@ -44,7 +45,14 @@ class MainController : Controller {
                 4.99f)
 
         )
+
+        val propertyList = mutableListOf<Properties>(
+            Properties(1, "testName", "testDescription", "testAddress", "testCity",
+                "testState", "testImage", 1, 1, 1)
+        )
     }
+
+
     constructor() : super()
     constructor(args: Bundle?) : super(args){
         args?.getSerializable(MainActivity.BUNDLE_KEY)

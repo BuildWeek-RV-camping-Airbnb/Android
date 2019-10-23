@@ -1,8 +1,6 @@
 package com.Lambda.rv_camping.networking
 
-import com.Lambda.rv_camping.model.UserResponse
-import com.Lambda.rv_camping.model.User
-import com.Lambda.rv_camping.model.UserLogin
+import com.Lambda.rv_camping.model.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
@@ -23,6 +21,9 @@ interface ApiBuilder {
 
     @POST("api/users")
     fun createUser(@Body user: User): Call<UserResponse>
+
+    @GET("api/properties")
+    fun getAllProperties(): Call<List<Properties>>
 
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"
