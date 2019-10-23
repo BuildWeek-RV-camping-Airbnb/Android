@@ -75,10 +75,10 @@ class MainController : Controller {
                     .pushChangeHandler(HorizontalChangeHandler())
                     .popChangeHandler(HorizontalChangeHandler()))
         }
-        /*view.vRecycle.apply {
+        view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = RecyclerRVAdapter(campingList)
-        }*/
+            adapter = PropertiesAdapter(LoginController.properties)
+        }
 
 
         return view
