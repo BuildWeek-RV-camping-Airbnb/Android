@@ -11,6 +11,12 @@ data class User (
     val avatar: String
 )
 
-data class NewUserResponse(
+data class UserLogin(
+    val username: String,
+    val password: String
+)
+
+data class UserResponse(
+    val message: String,
     val token: String
 )

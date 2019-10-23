@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
     tools:context=".ui.controllers.LoginController">
 
     <ProgressBar
         android:id="@+id/pb_login"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,5 +109,6 @@
             420,0,1.15,1,-10
             520,10,1.7,1.5,20
             220,0,1,1,-15" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

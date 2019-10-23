@@ -1,21 +1,29 @@
 package com.Lambda.rv_camping.ui.controllers
 
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.model.UserResponse
+import com.Lambda.rv_camping.model.User
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.bluelinelabs.conductor.Controller
 import kotlinx.android.synthetic.main.controller_register.view.*
 import com.Lambda.rv_camping.util.toastRegister
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class RegisterController : Controller(){
+class RegisterController : Controller() {
 
     private var validatedFirstName: Boolean = false
     private var validatedLastName: Boolean = false
     private var validatedUsername: Boolean = false
     private var validatedEmail: Boolean = false
     private var validatedPassword: Boolean = false
+    private var isOwner: Boolean = false
 
     lateinit var firstName: String
     lateinit var lastName: String
@@ -34,7 +42,8 @@ class RegisterController : Controller(){
             validatePassword()
 
             // If all the information is good, then register the user and go back to login
-            if(validateAllData()){
+            if (validateAllData()) {
+                createUser()
                 activity?.toastRegister(firstName)
                 router.popToRoot()
             }
@@ -57,7 +66,8 @@ class RegisterController : Controller(){
             validatedFirstName = false
             return false
         } else if (firstName.length < 2) {
-            view?.text_input_first_name_register?.error = "First name must be at least two characters"
+            view?.text_input_first_name_register?.error =
+                "First name must be at least two characters"
             return false
         } else {
             //Removes the error message if it already exists
@@ -119,8 +129,8 @@ class RegisterController : Controller(){
             view?.text_input_username_register?.error = "Field can't be empty"
             validatedUsername = false
             return false
-        } else if (username.length < 4) {
-            view?.text_input_username_register?.error = "Username must be at least four characters"
+        } else if (username.length < 3) {
+            view?.text_input_username_register?.error = "Username must be at least three characters"
             return false
         }
 
@@ -147,8 +157,8 @@ class RegisterController : Controller(){
             view?.text_input_password_register?.error = "Field can't be empty"
             validatedPassword = false
             return false
-        } else if (password.length < 4) {
-            view?.text_input_password_register?.error = "Password must be at least four characters"
+        } else if (password.length < 3) {
+            view?.text_input_password_register?.error = "Password must be at least three characters"
             return false
         } else if (password.length > 12) {
             view?.text_input_password_register?.error = "Password can't be more than 12 characters"
@@ -162,27 +172,44 @@ class RegisterController : Controller(){
         }
     }
 
-    fun validateAllData(): Boolean{
+    fun validateAllData(): Boolean {
         return validatedFirstName && validatedLastName && validatedEmail && validatedUsername && validatedPassword
     }
-}
-/*
 
-    //Checks to see if all the fields are correct or not. If so, return back to the login page.
-    private fun confirmRegister() {
-        //If any of the entered information isn't entered properly, prevent the user from successfully registering.
-        if (!validatedFirstName || !validatedLastName || !validatedUsername || !validatedEmail || !validatedPassword)
-            return
+    fun createUser() {
+        if (view?.cb_register_land_owner!!.isChecked) {
+            isOwner = true
+        }
+        val call: Call<UserResponse> = ApiBuilder.create()
+            .createUser(User(0, firstName, lastName, email, username, password, isOwner, "abc"))
 
-        Toast.makeText(
-            this,
-            "New User successfully created\nWelcome $firstName",
-            Toast.LENGTH_SHORT
-        ).show()
-        createUserr()
-        finish()
+        call.enqueue(object : Callback<UserResponse> {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.i("Register:", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(
+                call: Call<UserResponse>,
+                response: Response<UserResponse>
+            ) {
+                if (response.isSuccessful) {
+                    Log.i("Register", "123 ${response.body()}")
+                    LoginController.token = response.body()!!.token
+                }
+                else{
+                    Log.i("Register", "456 ${response.errorBody()}")
+                }
+
+            }
+
+        })
     }
 
+}
+/*
+if(view.cb_register_land_owner.isChecked){
+            isOwner = true
+        }
 
     private fun createUserr(){
         val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))

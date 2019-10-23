@@ -1,14 +1,14 @@
 package com.Lambda.rv_camping.networking
 
-import com.Lambda.rv_camping.model.NewUserResponse
+import com.Lambda.rv_camping.model.UserResponse
 import com.Lambda.rv_camping.model.User
+import com.Lambda.rv_camping.model.UserLogin
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
@@ -18,8 +18,11 @@ interface ApiBuilder {
     @GET("api/users")
     fun getAllUsers(): Call<List<User>>
 
-    @POST("auth/register")
-    fun createUser(@Body user: User): Call<NewUserResponse>
+    @POST("api/users/login")
+    fun login(@Body user: UserLogin): Call<UserResponse>
+
+    @POST("api/users")
+    fun createUser(@Body user: User): Call<UserResponse>
 
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"
