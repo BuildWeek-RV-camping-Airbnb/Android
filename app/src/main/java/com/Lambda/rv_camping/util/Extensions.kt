@@ -8,6 +8,10 @@ fun Context.toastRegister(message: String){
     Toast.makeText(this,"Welcome $message", Toast.LENGTH_SHORT).show()
 }
 
+fun Context.toast(message: String){
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+}
+
 fun View.show(){
     this.visibility = View.VISIBLE
 }
