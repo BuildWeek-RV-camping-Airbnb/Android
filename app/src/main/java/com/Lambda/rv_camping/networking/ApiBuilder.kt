@@ -23,7 +23,7 @@ interface ApiBuilder {
     fun createUser(@Body user: User): Call<UserResponse>
 
     @GET("api/properties")
-    fun getAllProperties(): Call<List<Properties>>
+    fun getAllProperties(): Call<Properties>
 
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"

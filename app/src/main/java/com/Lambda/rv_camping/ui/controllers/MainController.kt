@@ -2,7 +2,6 @@ package com.Lambda.rv_camping.ui.controllers
 
 import android.os.Bundle
 import android.util.Log
-import android.util.Property
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.adapter.PropertiesAdapter
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
+import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.model.User
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.networking.PlaceApiBuilder
@@ -47,8 +48,8 @@ class MainController : Controller {
 
         )
 
-        val propertyList = mutableListOf<Properties>(
-            Properties(1, "testName", "testDescription", "testAddress", "testCity",
+        val propertyList = mutableListOf<Property>(
+            Property(1, "testName", "testDescription", "testAddress", "testCity",
                 "testState", "testImage", 1, 1, 1)
         )
     }
@@ -65,7 +66,7 @@ class MainController : Controller {
 
         val view = inflater.inflate(R.layout.activity_main, container, false)
 
-        getAllProperties()
+        //getAllProperties()
 
         view?.myButton?.setOnClickListener {
             router.pushController(
@@ -73,10 +74,10 @@ class MainController : Controller {
                     .pushChangeHandler(HorizontalChangeHandler())
                     .popChangeHandler(HorizontalChangeHandler()))
         }
-        view.vRecycle.apply {
+        /*view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = RecyclerRVAdapter(campingList)
-        }
+        }*/
 
 
         return view
@@ -114,32 +115,7 @@ class MainController : Controller {
         })
     }*/
 
-    fun getAllProperties(){
-        val call: Call<List<Properties>> = ApiBuilder.create().getAllProperties()
-        call.enqueue(object: Callback<List<Properties>>{
-            override fun onFailure(call: Call<List<Properties>>, t: Throwable) {
-                Log.i("Properties", "OnFailure ${t.message}")
-            }
 
-            override fun onResponse(
-                call: Call<List<Properties>>,
-                response: Response<List<Properties>>
-            ) {
-                if(response.isSuccessful){
-                    Log.i("Properties", "onResponseSuccessful ${response.body()}")
-                    val properties = response.body()
-                    properties?.forEach {
-                        propertyList.add(Properties(it.id, it.property_name, it.description, it.address,
-                            it.city, it.state, it.image, it.price, it.rating, it.owner_id))
-                    }
-                }
-                else{
-                    Log.i("Properties", "onResponseFailure ${response.errorBody()}")
-                }
-            }
-
-        })
-    }
 }
 
 

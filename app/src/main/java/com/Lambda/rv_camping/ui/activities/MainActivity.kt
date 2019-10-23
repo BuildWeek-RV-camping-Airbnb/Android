@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.adapter.PropertiesAdapter
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.ui.controllers.LoginController
@@ -13,6 +14,7 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,10 +33,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        vRecycle.apply {
+        /*vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = RecyclerRVAdapter(campingList)
 
+        }*/
+
+        vRecycle?.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            //adapter = PropertiesAdapter(MainController.propertyList)
         }
         
         // Could have also just use cl_activity_main_parent instead of container

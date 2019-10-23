@@ -22,7 +22,7 @@ class PropertiesAdapter (private val propertyList: MutableList<Properties>) : Re
         return propertyList.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {/*
         val currentProperty = propertyList[position]
 
         holder.propertyName.text = currentProperty.property_name
@@ -33,7 +33,7 @@ class PropertiesAdapter (private val propertyList: MutableList<Properties>) : Re
         val price = "$ " + currentProperty.price.toString()
         holder.price.text = price
         val rating = currentProperty.rating.toString() + "/5"
-        holder.rating.text = rating
+        holder.rating.text = rating*/
     }
 
 
