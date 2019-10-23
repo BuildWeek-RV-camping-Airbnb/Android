@@ -12,6 +12,8 @@ import com.Lambda.rv_camping.model.UserResponse
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.util.gone
 import com.Lambda.rv_camping.util.show
+import com.Lambda.rv_camping.util.toast
+import com.Lambda.rv_camping.util.toastRegister
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -135,10 +137,13 @@ class LoginController : Controller(){
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if(response.isSuccessful) {
                     Log.i("Login", "Success ${response.body()}")
+                    activity?.toastRegister("$username")
                     successfulLogin = true
                 }
                 else{
                     Log.i("Login", "Failure ${response.errorBody()}")
+                    activity?.toast("Incorect Username or Password")
+                    view?.pb_login?.gone()
                     successfulLogin = false
                 }
 
