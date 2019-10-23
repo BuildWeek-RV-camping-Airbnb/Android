@@ -7,18 +7,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/motion_scene"
-    tools:context=".ui.activities.MainActivity">
+    tools:context=".ui.activities.MainActivity"
+    >
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/balkancampersunsplash"/>
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="451dp"
+        android:src="@drawable/blake_wisz_unsplash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-88dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vRecycle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/myButton" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
         android:text="reserve"
