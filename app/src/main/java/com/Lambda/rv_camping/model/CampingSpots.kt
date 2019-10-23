@@ -8,14 +8,14 @@ class CampingSpots : Serializable{
     var property_name: String? = null
     var address: String? = null
     var description: String? = null
-    var price: Int? = null
+    var price: Float? = null
     var reserved: String? = null
     var isReserved: Boolean? = false
 
-    constructor(details: String, title: String){
-        this.description = details
+    constructor(property_name: String, description: String, address: String, price: Float){
+        this.description = description
       //  this.id = id
-        this.property_name = title
+        this.property_name = property_name
         this.address = address
         this.price = price
 
@@ -28,7 +28,7 @@ class CampingSpots : Serializable{
         //this.id = campingSpots
         this.property_name = campingSpots
         this.address = campingSpots
-        this.price = campingSpots.toInt()
+        this.price = campingSpots.toFloat()
 
     }
 }

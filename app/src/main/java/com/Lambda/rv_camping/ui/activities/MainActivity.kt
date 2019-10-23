@@ -1,6 +1,5 @@
 package com.Lambda.rv_camping.ui.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.ViewGroup
@@ -8,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
-import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.controllers.MainController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
@@ -23,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     }
     companion object {
         val campingList = mutableListOf(
-            CampingSpots("djlkj", "1"),
-            CampingSpots("ds", "2")
+            CampingSpots("djlkj", "1","1 sams sd", 1f),
+            CampingSpots("ds", "2","fsd", 42f)
 
         )
         val BUNDLE_KEY = "key"

@@ -36,11 +36,23 @@
     android:id="@+id/mTitleText"
     android:layout_width="match_parent"
     android:layout_height="50dp"/>
+
+            <EditText
+
+                android:id="@+id/mAddressText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+            <EditText
+
+                android:id="@+id/mPriceText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"/>
+
             <EditText
 
                 android:id="@+id/mDescriptionText"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="99dp" />
 
 
 

@@ -37,7 +37,7 @@ class RecyclerRVAdapter (private val dataList: MutableList<CampingSpots>)
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = dataList[position]
-        val intent = Intent().getStringExtra(PASSED_DATE)
+     //   val intent = Intent().getStringExtra(PASSED_DATE)
         holder.title.text = data.description.toString()
         holder.address.text = data.address.toString()
         holder.description.text = data.description.toString()

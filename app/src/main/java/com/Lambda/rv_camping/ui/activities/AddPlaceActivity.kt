@@ -30,10 +30,12 @@ class AddPlaceActivity : AppCompatActivity() {
 
    fun confirmAddPlace(){
         val title = mTitleText.text.toString().trim()
+        val address = mAddressText.text.toString().trim()
         val description = mDescriptionText.text.toString().trim()
+        val price = mPriceText.text.toString().trim()
 
 
-        MainActivity.campingList.add(CampingSpots(title, description))
+        MainActivity.campingList.add(CampingSpots(title, address, description, price.toFloat()))
         val intent = Intent(this@AddPlaceActivity, MainActivity::class.java)
         startActivity(intent)
 
