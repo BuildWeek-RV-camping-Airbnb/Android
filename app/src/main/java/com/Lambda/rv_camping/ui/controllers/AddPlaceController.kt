@@ -23,12 +23,14 @@ class AddPlaceController : Controller{
         view?.mButtonAddPlace?.setOnClickListener {
             val spot = mutableListOf<CampingSpots>()
             val title = view.mTitleText.getString()
+            val address = view.mAddressText.getString()
+            val price = view.mPriceText.getString().toFloat()
             val detail =  view.mDescriptionText.getString()
          //  for (it in spot) {
-         //      spot.add(CampingSpots(title, detail))
+         //      spot.add(CampingSpots(property_name, description))
          //  }
-            MainController.campingList.add(CampingSpots(title, detail))
-            args.putSerializable(MainActivity.BUNDLE_KEY,  CampingSpots(title, detail) )
+            MainController.campingList.add(CampingSpots(title, address, detail, price))
+            args.putSerializable(MainActivity.BUNDLE_KEY,  CampingSpots(title, address, detail, price) )
 
             router.pushController(
                 RouterTransaction.with(MainController(args))

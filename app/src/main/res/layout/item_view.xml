@@ -19,6 +19,18 @@
 
 
         <TextView
+            android:id="@+id/mAddressText"
+            android:layout_width="232dp"
+            android:layout_height="19dp"
+            android:text="15999 Jewell Ave"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.551"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.278" />
+
+        <TextView
             android:id="@+id/mTitleText"
             android:layout_width="232dp"
             android:layout_height="19dp"
@@ -52,19 +64,19 @@
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.255" />
+            app:layout_constraintVertical_bias="0.609" />
 
         <TextView
-            android:id="@+id/mTextReservedDate"
+            android:id="@+id/mTextReservedDateAndPrice"
             android:layout_width="107dp"
             android:layout_height="37dp"
             android:text="Reserve"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.103"
+            app:layout_constraintHorizontal_bias="0.194"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.811" />
 
         <Button
             android:id="@+id/mButtonReserve"
@@ -73,10 +85,10 @@
             android:text="Reserve"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.858"
+            app:layout_constraintHorizontal_bias="0.923"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
-            app:layout_constraintVertical_bias="0.09" />
+            app:layout_constraintVertical_bias="0.783" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
