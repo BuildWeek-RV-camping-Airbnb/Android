@@ -9,12 +9,16 @@
     app:layoutDescription="@xml/motion_scene"
     tools:context=".ui.activities.MainActivity">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/balkancampersunsplash"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vRecycle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/myButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/myButton" />
 
     <Button
         android:text="reserve"
