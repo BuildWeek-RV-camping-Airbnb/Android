@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.User
+import com.Lambda.rv_camping.model.UserLogin
+import com.Lambda.rv_camping.model.UserResponse
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.util.gone
 import com.Lambda.rv_camping.util.show
@@ -26,6 +28,7 @@ class LoginController : Controller(){
 
     companion object{
         var successfulLogin:Boolean = false
+        lateinit var token: String
     }
 
     private var validatedUsername: Boolean = false
@@ -41,7 +44,9 @@ class LoginController : Controller(){
         view.btn_login.setOnClickListener {
             validateUsername()
             validatePassword()
-            getAllUsers()
+
+            if(validatedUsername && validatedPassword)
+                login()
 
         }
 
@@ -80,8 +85,8 @@ class LoginController : Controller(){
             view?.text_input_username?.error = "Field can't be empty"
             validatedUsername = false
             return false
-        } else if (username.length < 4) {
-            view?.text_input_username?.error = "Username should be at least four characters"
+        } else if (username.length < 3) {
+            view?.text_input_username?.error = "Username should be at least three characters"
             return false
         } else if (username.length > 12) {
             view?.text_input_username?.error = "Username can't be more than 12 characters"
@@ -104,8 +109,8 @@ class LoginController : Controller(){
             view?.text_input_password?.error = "Field can't be empty"
             validatedPassword = false
             return false
-        } else if (password.length < 4) {
-            view?.text_input_password?.error = "Password should be at least four characters"
+        } else if (password.length < 3) {
+            view?.text_input_password?.error = "Password should be at least three characters"
             return false
         } else if (password.length > 12) {
             view?.text_input_password?.error = "Password can't be more than 12 characters"
@@ -119,6 +124,38 @@ class LoginController : Controller(){
         }
     }
 
+    fun login(){
+        view?.pb_login?.show()
+        val call:Call<UserResponse> = ApiBuilder.create().login(UserLogin(username, password))
+        call.enqueue(object: Callback<UserResponse>{
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.i("Login:", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if(response.isSuccessful) {
+                    Log.i("Login", "Success ${response.body()}")
+                    successfulLogin = true
+                }
+                else{
+                    Log.i("Login", "Failure ${response.errorBody()}")
+                    successfulLogin = false
+                }
+
+                if(successfulLogin){
+                    successfulLogin = false
+                    router.pushController(RouterTransaction.with(MainController())
+                        .pushChangeHandler(HorizontalChangeHandler())
+                        .popChangeHandler(HorizontalChangeHandler()))
+                }
+            }
+
+        })
+    }
+
+}
+
+/*
     fun getAllUsers(){
         val call:Call<List<User>> = ApiBuilder.create().getAllUsers()
         call.enqueue(object: Callback<List<User>>{
@@ -153,5 +190,4 @@ class LoginController : Controller(){
 
         })
     }
-
-}
+ */
