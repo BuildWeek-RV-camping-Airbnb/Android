@@ -10,6 +10,7 @@ data class Property (
     var image: String,
     var price: Int,
     var rating: Number,
+
     var owner_id: Int
 )
 

@@ -6,19 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.PropertiesAdapter
-import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
-import com.Lambda.rv_camping.model.User
 import com.Lambda.rv_camping.networking.ApiBuilder
-import com.Lambda.rv_camping.networking.PlaceApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
-import com.Lambda.rv_camping.util.show
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -26,26 +22,28 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.controller_login.view.*
+
+import com.google.android.gms.maps.MapFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainController : Controller, OnMapReadyCallback {
 
-    var mMap: GoogleMap? = null
+class MainController : Controller{
 
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    private lateinit var mMap: GoogleMap
+    private var item: Properties? = null
+
+
+
 
     companion object {
         val campingList = mutableListOf(
             CampingSpots("HWY 66",
                 "This cool place is on Mile marker nine of HWY 66. Great view and area for kids to play on",
-
                 "1009 wilyamson rd",
                 4.99f
                 ),
@@ -89,11 +87,15 @@ class MainController : Controller, OnMapReadyCallback {
         view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = PropertiesAdapter(LoginController.properties)
+
+
         }
+
 
 
         return view
     }
+
     override fun onChangeEnded(
         changeHandler: ControllerChangeHandler,
         changeType: ControllerChangeType
@@ -130,7 +132,7 @@ class MainController : Controller, OnMapReadyCallback {
     fun getAllProperties(){
         val call: Call<Properties> = ApiBuilder.create().getAllProperties(LoginController.token)
 
-        call.enqueue(object: Callback<Properties>{
+        call.enqueue(object: Callback<Properties> {
             override fun onFailure(call: Call<Properties>, t: Throwable) {
                 Log.i("Properties ", "onFailure ${t.message}")
             }
@@ -151,6 +153,7 @@ class MainController : Controller, OnMapReadyCallback {
 
         })
     }
+
 
 }
 
