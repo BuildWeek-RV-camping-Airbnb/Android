@@ -44,8 +44,6 @@ class MainController : Controller {
                 4.99f)
 
         )
-        val BUNDLE_KEY = "key"
-        val rvAdapter = RecyclerRVAdapter(campingList)
     }
     constructor() : super()
     constructor(args: Bundle?) : super(args){

@@ -111,13 +111,21 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/cb_register_land_owner"
+        app:layout_constraintStart_toStartOf="@id/text_input_password_register"
+        app:layout_constraintTop_toBottomOf="@id/text_input_password_register"
+        android:text="Are you a Land Owner?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <Button
         android:id="@+id/btn_register_create"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="Complete Registration"
-        app:layout_constraintTop_toBottomOf="@id/text_input_password_register"
+        app:layout_constraintTop_toBottomOf="@id/cb_register_land_owner"
         tools:layout_editor_absoluteX="32dp" />
 
     <Button
