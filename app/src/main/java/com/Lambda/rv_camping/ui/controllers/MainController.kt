@@ -2,6 +2,7 @@ package com.Lambda.rv_camping.ui.controllers
 
 import android.os.Bundle
 import android.util.Log
+import android.util.Property
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,6 +127,11 @@ class MainController : Controller {
             ) {
                 if(response.isSuccessful){
                     Log.i("Properties", "onResponseSuccessful ${response.body()}")
+                    val properties = response.body()
+                    properties?.forEach {
+                        propertyList.add(Properties(it.id, it.property_name, it.description, it.address,
+                            it.city, it.state, it.image, it.price, it.rating, it.owner_id))
+                    }
                 }
                 else{
                     Log.i("Properties", "onResponseFailure ${response.errorBody()}")
