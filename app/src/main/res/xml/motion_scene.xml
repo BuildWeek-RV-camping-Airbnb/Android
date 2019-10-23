@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <Transition
-        app:constraintSetStart="@id/start"
-        app:constraintSetEnd="@id/end"
-        app:duration="1000">
-        <OnSwipe
-            app:touchAnchorId="@+id/vRecycle"
-            app:touchAnchorSide="top"
-            app:dragDirection="dragUp" />
-    </Transition>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/background">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+
     </ConstraintSet>
+
     <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/background"
+            android:layout_height="80dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="451dp"
+            android:src="@drawable/blake_wisz_unsplash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+             />
+
     </ConstraintSet>
+
+    <Transition
+        app:constraintSetEnd="@id/end"
+        app:constraintSetStart="@id/start"
+        app:duration="1000">
+
+        <OnSwipe
+            app:dragDirection="dragUp"
+            app:touchAnchorId="@id/vRecycle"
+            app:touchAnchorSide="top" />
+
+    </Transition>
+
 </MotionScene>
