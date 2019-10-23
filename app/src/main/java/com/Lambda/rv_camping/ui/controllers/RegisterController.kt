@@ -197,7 +197,7 @@ class RegisterController : Controller() {
                     LoginController.token = response.body()!!.token
                 }
                 else{
-                    Toast.makeText(activity, "Data has been entered incorrectly", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Username or Email is already taken.", Toast.LENGTH_SHORT).show()
                     Log.i("Register", "456 ${response.errorBody()}")
                 }
 

@@ -61,6 +61,13 @@ class LoginController : Controller(){
                     //Gives the transition a horizontal slide when popping
                     .popChangeHandler(HorizontalChangeHandler()))
         }
+
+        //TODO REMOVE THIS ON OFFICIAL RELEASE!!!
+        view.btn_login_skip.setOnClickListener {
+            router.pushController(RouterTransaction.with(MainController())
+                .pushChangeHandler(HorizontalChangeHandler())
+                .popChangeHandler(HorizontalChangeHandler()))
+        }
         return view
     }
 
