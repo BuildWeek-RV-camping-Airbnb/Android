@@ -73,6 +73,8 @@ class MainController : Controller, OnMapReadyCallback {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
+        getAllProperties()
+
         val view = inflater.inflate(R.layout.activity_main, container, false)
 
 
@@ -125,6 +127,30 @@ class MainController : Controller, OnMapReadyCallback {
         })
     }*/
 
+    fun getAllProperties(){
+        val call: Call<Properties> = ApiBuilder.create().getAllProperties(LoginController.token)
+
+        call.enqueue(object: Callback<Properties>{
+            override fun onFailure(call: Call<Properties>, t: Throwable) {
+                Log.i("Properties ", "onFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Properties>, response: Response<Properties>) {
+                if(response.isSuccessful){
+                    var list = response.body()
+                    LoginController.properties = list?.properties
+                    view?.vRecycle?.apply {
+                        layoutManager = LinearLayoutManager(activity)
+                        adapter = PropertiesAdapter(LoginController.properties)
+                    }
+                }
+                else{
+                    Log.i("Properties ", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
+        })
+    }
 
 }
 

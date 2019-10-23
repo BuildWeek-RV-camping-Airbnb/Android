@@ -44,7 +44,6 @@ class LoginController : Controller(){
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
-        getAllProperties()
 
         val view = inflater.inflate(R.layout.controller_login, container, false)
         view.pb_login.gone()
@@ -151,6 +150,7 @@ class LoginController : Controller(){
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if(response.isSuccessful) {
                     Log.i("Login", "Success ${response.body()}")
+                    token = response.body()!!.token
                     activity?.toastRegister("$username")
                     successfulLogin = true
                 }
@@ -172,26 +172,7 @@ class LoginController : Controller(){
         })
     }
 
-    fun getAllProperties(){
-        val call: Call<Properties> = ApiBuilder.create().getAllProperties()
 
-        call.enqueue(object: Callback<Properties>{
-            override fun onFailure(call: Call<Properties>, t: Throwable) {
-                Log.i("Properties ", "onFailure ${t.message}")
-            }
-
-            override fun onResponse(call: Call<Properties>, response: Response<Properties>) {
-                if(response.isSuccessful){
-                    var list = response.body()
-                    properties = list?.properties
-                }
-                else{
-                    Log.i("Properties ", "OnResponseFailure ${response.errorBody()}")
-                }
-            }
-
-        })
-    }
 
 }
 
