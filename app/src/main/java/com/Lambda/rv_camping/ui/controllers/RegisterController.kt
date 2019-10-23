@@ -180,8 +180,7 @@ class RegisterController : Controller() {
         if (view?.cb_register_land_owner!!.isChecked) {
             isOwner = true
         }
-        val call: Call<UserResponse> = ApiBuilder.create()
-            .createUser(User(0, firstName, lastName, email, username, password, isOwner, "abc"))
+        val call: Call<UserResponse> = ApiBuilder.create().createUser(User(firstName, lastName, email, username, password, isOwner, "abc"))
 
         call.enqueue(object : Callback<UserResponse> {
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {
