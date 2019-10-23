@@ -1,16 +1,19 @@
 package com.Lambda.rv_camping.ui.controllers
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.PropertiesAdapter
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -23,14 +26,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 import com.google.android.gms.maps.MapFragment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
+class MainController : Controller{
 
 
-class MainController : Controller {
-
-    var mMap: GoogleMap? = null
-
+    private lateinit var mMap: GoogleMap
     private var item: Properties? = null
 
 
@@ -83,13 +87,15 @@ class MainController : Controller {
         view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = PropertiesAdapter(LoginController.properties)
-        }
 
+
+        }
 
 
 
         return view
     }
+
     override fun onChangeEnded(
         changeHandler: ControllerChangeHandler,
         changeType: ControllerChangeType
@@ -126,7 +132,7 @@ class MainController : Controller {
     fun getAllProperties(){
         val call: Call<Properties> = ApiBuilder.create().getAllProperties(LoginController.token)
 
-        call.enqueue(object: Callback<Properties>{
+        call.enqueue(object: Callback<Properties> {
             override fun onFailure(call: Call<Properties>, t: Throwable) {
                 Log.i("Properties ", "onFailure ${t.message}")
             }
@@ -147,6 +153,7 @@ class MainController : Controller {
 
         })
     }
+
 
 }
 
