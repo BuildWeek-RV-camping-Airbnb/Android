@@ -29,8 +29,9 @@ class AddPlaceController : Controller{
          //  for (it in spot) {
          //      spot.add(CampingSpots(property_name, description))
          //  }
+            MainController.propertyListt
             MainController.campingList.add(CampingSpots(title, address, detail, price))
-            args.putSerializable(MainActivity.BUNDLE_KEY,  CampingSpots(title, address, detail, price) )
+            args.putSerializable(MainActivity.BUNDLE_KEY, CampingSpots(title, address, detail, price))
 
             router.pushController(
                 RouterTransaction.with(MainController(args))
