@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
-import com.Lambda.rv_camping.model.User
-import com.Lambda.rv_camping.model.UserLogin
-import com.Lambda.rv_camping.model.UserResponse
+import com.Lambda.rv_camping.adapter.PropertiesAdapter
+import com.Lambda.rv_camping.model.*
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.util.gone
 import com.Lambda.rv_camping.util.show
@@ -19,6 +19,7 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.controller_login.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -31,6 +32,8 @@ class LoginController : Controller(){
     companion object{
         var successfulLogin:Boolean = false
         lateinit var token: String
+
+        var properties: MutableList<Property>? = null
     }
 
     private var validatedUsername: Boolean = false
@@ -40,6 +43,9 @@ class LoginController : Controller(){
     lateinit var password: String
     
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
+
+        getAllProperties()
+
         val view = inflater.inflate(R.layout.controller_login, container, false)
         view.pb_login.gone()
 
@@ -64,6 +70,7 @@ class LoginController : Controller(){
 
         //TODO REMOVE THIS ON OFFICIAL RELEASE!!!
         view.btn_login_skip.setOnClickListener {
+
             router.pushController(RouterTransaction.with(MainController())
                 .pushChangeHandler(HorizontalChangeHandler())
                 .popChangeHandler(HorizontalChangeHandler()))
@@ -159,6 +166,27 @@ class LoginController : Controller(){
                     router.pushController(RouterTransaction.with(MainController())
                         .pushChangeHandler(HorizontalChangeHandler())
                         .popChangeHandler(HorizontalChangeHandler()))
+                }
+            }
+
+        })
+    }
+
+    fun getAllProperties(){
+        val call: Call<Properties> = ApiBuilder.create().getAllProperties()
+
+        call.enqueue(object: Callback<Properties>{
+            override fun onFailure(call: Call<Properties>, t: Throwable) {
+                Log.i("Properties ", "onFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Properties>, response: Response<Properties>) {
+                if(response.isSuccessful){
+                    var list = response.body()
+                    properties = list?.properties
+                }
+                else{
+                    Log.i("Properties ", "OnResponseFailure ${response.errorBody()}")
                 }
             }
 

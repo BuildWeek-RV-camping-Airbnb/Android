@@ -9,8 +9,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
+import com.Lambda.rv_camping.adapter.PropertiesAdapter
 import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.model.Properties
+import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.model.User
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.networking.PlaceApiBuilder
@@ -44,7 +47,15 @@ class MainController : Controller {
                 4.99f)
 
         )
+
+
+        var propertyListt = mutableListOf<Property>(
+            Property(1, "testName", "testDescription", "testAddress", "testCity",
+                "testState", "testImage", 1, 1, 1)
+        )
     }
+
+
     constructor() : super()
     constructor(args: Bundle?) : super(args){
         args?.getSerializable(MainActivity.BUNDLE_KEY)
@@ -53,8 +64,10 @@ class MainController : Controller {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
-
         val view = inflater.inflate(R.layout.activity_main, container, false)
+
+
+        //getAllProperties()
 
         view?.myButton?.setOnClickListener {
             router.pushController(
@@ -64,8 +77,7 @@ class MainController : Controller {
         }
         view.vRecycle.apply {
             layoutManager = LinearLayoutManager(activity)
-            adapter = RecyclerRVAdapter(campingList)
-            getAllProperties()
+            adapter = PropertiesAdapter(LoginController.properties)
         }
 
 
@@ -83,7 +95,8 @@ class MainController : Controller {
             )
         }
     }
-    fun getAllProperties(){
+    /*
+    fun getAllPropertiesNotInUse(){
         val call: Call<List<CampingSpots>> = PlaceApiBuilder.create().getAllProperties()
         call.enqueue(object: Callback<List<CampingSpots>> {
             override fun onFailure(call: Call<List<CampingSpots>>, t: Throwable) {
@@ -101,7 +114,9 @@ class MainController : Controller {
             }
 
         })
-    }
+    }*/
+
+
 }
 
 
