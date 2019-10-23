@@ -1,24 +1,17 @@
 package com.Lambda.rv_camping.ui.controllers
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.adapter.PropertiesAdapter
-import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
-import com.Lambda.rv_camping.model.User
-import com.Lambda.rv_camping.networking.ApiBuilder
-import com.Lambda.rv_camping.networking.PlaceApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
-import com.Lambda.rv_camping.util.show
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
@@ -26,26 +19,33 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.controller_login.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+
+import com.google.android.gms.maps.MapFragment
+
+
+
 
 class MainController : Controller, OnMapReadyCallback {
 
     var mMap: GoogleMap? = null
 
+    private var item: Properties? = null
+
 
     override fun onMapReady(googleMap: GoogleMap) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mMap = googleMap
+
+        val lat =  0.0
+        val lon = item?.properties
+
     }
 
     companion object {
         val campingList = mutableListOf(
             CampingSpots("HWY 66",
                 "This cool place is on Mile marker nine of HWY 66. Great view and area for kids to play on",
-
                 "1009 wilyamson rd",
                 4.99f
                 ),
@@ -89,7 +89,9 @@ class MainController : Controller, OnMapReadyCallback {
             adapter = PropertiesAdapter(LoginController.properties)
         }
 
-
+        val mapFragment = (R.id.map) as MapFragment
+        mapFragment.getMapAsync(this)
+/*getCurrentLocation()*/
         return view
     }
     override fun onChangeEnded(
