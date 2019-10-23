@@ -19,11 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/mCampingImage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBodunds="true" />
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/toolbar_layout"
