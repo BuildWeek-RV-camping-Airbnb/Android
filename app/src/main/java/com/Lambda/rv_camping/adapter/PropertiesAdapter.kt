@@ -23,35 +23,30 @@ class PropertiesAdapter (private val propertyList: MutableList<Properties>) : Re
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val currentProperty = propertyList[position]
+
+        holder.propertyName.text = currentProperty.property_name
+        holder.description.text = currentProperty.description
+        holder.address.text = currentProperty.address
+        holder.city.text = currentProperty.city
+        holder.state.text = currentProperty.state
+        val price = "$ " + currentProperty.price.toString()
+        holder.price.text = price
+        val rating = currentProperty.rating.toString() + "/5"
+        holder.rating.text = rating
     }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val propertyName: TextView = itemView.tv_property_name
+        val description: TextView = itemView.tv_property_description
+        val address: TextView = itemView.tv_property_address
+        val city: TextView = itemView.tv_property_city
+        val state: TextView = itemView.tv_property_state
+        val price: TextView = itemView.tv_property_price
+        val rating: TextView = itemView.tv_property_rating
 
-        /*
-        val image: ImageView = itemView.findViewById(R.id.iv_product)
-        val title: TextView = itemView.findViewById(R.id.tv_title)
-        val price: TextView = itemView.findViewById(R.id.tv_price)
-        val productOnSale: ImageView = itemView.iv_sale*/
     }
 
 }
-
-/*
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.product_row, parent, false)
-        val holder = ViewHolder(view)
-        view.setOnClickListener {
-        val intent = Intent(parent.context, ProductDetails::class.java)
-            intent.putExtra("title", products[holder.adapterPosition].title)
-            intent.putExtra("photo_url", products[holder.adapterPosition].photoUrl)
-            intent.putExtra("price", products[holder.adapterPosition].price)
-            parent.context.startActivity(intent)
-        }
-
-        return holder
-    }
- */
