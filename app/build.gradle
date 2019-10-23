@@ -24,7 +24,11 @@ android {
         }
     }
 }
-
+android {
+    defaultConfig {
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -80,5 +84,19 @@ dependencies {
 
     //Motion
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta2'
+
+    // debugImplementation because LeakCanary should only run in debug builds.
+    debugImplementation 'com.facebook.flipper:flipper-leakcanary-plugin:0.25.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
+
+    // Required -- JUnit 4 framework
+    testImplementation 'junit:junit:4.12'
+    // Optional -- Robolectric environment
+    testImplementation 'androidx.test:core:1.0.0'
+    // Optional -- Mockito framework
+    testImplementation 'org.mockito:mockito-core:1.10.19'
+    // test dependencies - for testing
+    testImplementation "org.amshove.kluent:kluent-android:1.56"
 
 }
