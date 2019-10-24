@@ -39,8 +39,8 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
-        android:text="reserve"
         android:id="@+id/btn_main_add_property"
+        android:text="Add New Property"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

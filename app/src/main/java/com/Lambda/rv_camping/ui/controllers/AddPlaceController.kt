@@ -24,21 +24,27 @@ class AddPlaceController : Controller {
     private var validatedCity: Boolean = false
     private var validatedState: Boolean = false
     private var validatedPrice: Boolean = false
-    private var allValidated: Boolean = false
 
     lateinit var propertyName: String
     lateinit var description: String
     lateinit var address: String
     lateinit var city: String
     lateinit var state: String
-    private var price: Int = 0
+    private var price: Int? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
         view.btn_property_add.setOnClickListener {
             validatePropertyName()
-            //router.popCurrentController()
+            validateDescription()
+            validateAddress()
+            validateCity()
+            validateState()
+            validatePrice()
+
+            if(validateAllData())
+                router.popCurrentController()
         }
 
 
@@ -97,7 +103,7 @@ class AddPlaceController : Controller {
     private fun validateCity(): Boolean{
         city = view?.text_input_add_city?.editText?.text.toString().trim()
 
-        if(address.isEmpty()){
+        if(city.isEmpty()){
             view?.text_input_add_city?.error = "Field can't be empty"
             validatedCity = false
             return false
@@ -113,7 +119,7 @@ class AddPlaceController : Controller {
     private fun validateState(): Boolean{
         state = view?.text_input_add_state?.editText?.text.toString().trim()
 
-        if(address.isEmpty()){
+        if(state.isEmpty()){
             view?.text_input_add_state?.error = "Field can't be empty"
             validatedState = false
             return false
@@ -127,9 +133,12 @@ class AddPlaceController : Controller {
     }
 
     private fun validatePrice(): Boolean{
-        price = view?.text_input_price?.editText?.text.toString().trim().toInt()
+        val priceString = view?.text_input_price?.editText?.text.toString().trim()
+        if(!priceString.isNullOrEmpty()){
+            price = priceString.toInt()
+        }
 
-        if(address.isEmpty()){
+        if(price == null){
             view?.text_input_price?.error = "Field can't be empty"
             validatedPrice = false
             return false
@@ -140,5 +149,10 @@ class AddPlaceController : Controller {
             validatedPrice = true
             return true
         }
+    }
+
+    fun validateAllData(): Boolean {
+        return validatedPropertyName && validatedDescription && validatedAddress &&
+                validatedCity && validatedState && validatedPrice
     }
 }
