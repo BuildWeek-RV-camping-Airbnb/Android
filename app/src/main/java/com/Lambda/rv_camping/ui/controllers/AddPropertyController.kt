@@ -12,6 +12,8 @@ import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.Lambda.rv_camping.util.getString
+import com.Lambda.rv_camping.util.gone
+import com.Lambda.rv_camping.util.show
 import com.Lambda.rv_camping.util.toast
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
@@ -21,7 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AddPlaceController : Controller {
+class AddPropertyController : Controller {
 
     constructor() : super()
     constructor(args: Bundle?) : super(args)
@@ -43,6 +45,8 @@ class AddPlaceController : Controller {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
+        view.pb_add_property.gone()
+
         view.btn_property_add.setOnClickListener {
             validatePropertyName()
             validateDescription()
@@ -51,7 +55,8 @@ class AddPlaceController : Controller {
             validateState()
             validatePrice()
 
-            createProperty()
+            if(validateAllData())
+                createProperty()
         }
 
 
@@ -145,7 +150,7 @@ class AddPlaceController : Controller {
             price = priceString.toInt()
         }
 
-        if(price == null){
+        if(priceString.isNullOrEmpty()){
             view?.text_input_price?.error = "Field can't be empty"
             validatedPrice = false
             return false
@@ -165,6 +170,7 @@ class AddPlaceController : Controller {
 
     // Response is empty
     fun createProperty(){
+        view?.pb_add_property?.show()
         val call:Call<Void> = ApiBuilder.create().createProperty(LoginController.token, NewProperty(propertyName, description, address, city, state, price, 3, 5))
         call.enqueue(object: Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
@@ -176,13 +182,14 @@ class AddPlaceController : Controller {
                     Log.i("Add Property", "OnResponseSuccess ${response.message()}")
                     val nProperty = Property(0, propertyName, description, address, city, state, "", price, 3, 5)
                     MainController.propertyListt.add(nProperty)
+                    view?.pb_add_property?.gone()
                     activity?.toast("Property has successfully been added")
-                    if(validateAllData())
-                        router.popCurrentController()
+                    router.popCurrentController()
 
                 }
                 else{
                     activity?.toast("Failed to add property")
+                    view?.pb_add_property?.gone()
                     Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
                 }
             }
