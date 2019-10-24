@@ -21,7 +21,7 @@ class ReservePlaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserve_place)
 
-
+/*
 
         mTextDateFrom.setOnClickListener {
             val fragment = DateFragmentFrom()
@@ -45,6 +45,6 @@ class ReservePlaceActivity : AppCompatActivity() {
 
 
         }
-
+*/
     }
 }

@@ -13,7 +13,7 @@ class DateFragmentTo: DialogFragment(), DatePickerDialog.OnDateSetListener{
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
         val editable = SpannableStringBuilder("$year-$month-$day")
-        activity?.mTextDateTo?.text = editable
+        //activity?.mTextDateTo?.text = editable
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
