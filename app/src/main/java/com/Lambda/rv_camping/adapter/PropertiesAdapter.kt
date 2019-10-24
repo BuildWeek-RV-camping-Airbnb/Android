@@ -56,8 +56,8 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
             intent.putExtra("address", currentProperty?.address)
             intent.putExtra("city", currentProperty?.city)
             intent.putExtra("state", currentProperty?.state)
-            intent.putExtra("price", currentProperty?.price)
-            intent.putExtra("rating", currentProperty?.rating)
+            intent.putExtra("price", price)
+            intent.putExtra("rating", rating)
 
             context?.startActivity(intent)
         }

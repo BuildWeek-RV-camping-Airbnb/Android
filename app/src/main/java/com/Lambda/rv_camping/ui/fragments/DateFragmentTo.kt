@@ -12,8 +12,18 @@ import java.util.*
 class DateFragmentTo: DialogFragment(), DatePickerDialog.OnDateSetListener{
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
-        val editable = SpannableStringBuilder("$year-$month-$day")
-        //activity?.mTextDateTo?.text = editable
+
+        var fixedMonth: String = "${month+1}"
+        var fixedDay: String = day.toString()
+        if(month+1 < 10){
+            fixedMonth = "0${month+1}"
+        }
+
+        if(day < 10){
+            fixedDay = "0${day.toString()}"
+        }
+        val editable = SpannableStringBuilder("$year-${fixedMonth}-$fixedDay")
+        activity?.tv_reserve_date_end?.text = editable
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

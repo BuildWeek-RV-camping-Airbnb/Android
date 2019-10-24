@@ -17,34 +17,42 @@ class ReservePlaceActivity : AppCompatActivity() {
         const val PASSING_DATE_INT_ID = 1
     }
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserve_place)
 
-/*
 
-        mTextDateFrom.setOnClickListener {
+        val name = intent.getStringExtra("name")
+        val description = intent.getStringExtra("description")
+        val address = intent.getStringExtra("address")
+        val city = intent.getStringExtra("city")
+        val state = intent.getStringExtra("state")
+        val price = intent.getStringExtra("price")
+        val rating = intent.getStringExtra("rating")
+
+        tv_property_name.text = name
+        tv_property_description.text = description
+        tv_property_address.text = address
+        tv_property_city.text = city
+        tv_property_state.text = state
+        tv_property_price.text = price
+        tv_property_rating.text = rating
+
+
+
+        tv_reserve_date_start.setOnClickListener {
             val fragment = DateFragmentFrom()
             fragment.show(supportFragmentManager, "datePickerFrom")
         }
 
-        mTextDateTo.setOnClickListener {
+        tv_reserve_date_end.setOnClickListener {
             val fragment = DateFragmentTo()
             fragment.show(supportFragmentManager, "datePickerTo")
         }
-    //    val dateFrom = mTextDateFrom.text.toString()
-       // val dateTo = mTextDateTo.text.toString()
-        mButtonReservePlace.setOnClickListener {
-            val dateFrom = mTextDateFrom.text.toString()
-            val dateTo = mTextDateTo.text.toString()
-            val dateIntent = Intent()
-           dateIntent.putExtra(PASSED_DATE, "Successfully reserved for: $dateFrom $dateTo")
-            setResult(Activity.RESULT_OK, dateIntent)
-           finish()
-
-
 
         }
-*/
-    }
+
+
 }
