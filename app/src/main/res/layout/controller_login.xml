@@ -96,15 +96,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/btn_login_skip"
-        app:layout_constraintTop_toBottomOf="@id/btn_register"
-        android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="SKIP LOGIN. REMEMBER TO REMOVE ON RELEASE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <com.scwang.wave.MultiWaveHeader
 
         android:id="@+id/wave"
