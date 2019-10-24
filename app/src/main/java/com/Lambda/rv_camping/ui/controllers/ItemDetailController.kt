@@ -13,36 +13,16 @@ import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class ItemDetailController: Controller{
-    constructor(): super()
-    constructor(args: Bundle?): super(args){
-        args?.getSerializable(MainActivity.BUNDLE_KEY)
-    }
+class ItemDetailController : Controller() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        val view = inflater.inflate(R.layout.item_view, container,false)
+        val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
-        val list = args.getSerializable(MainActivity.BUNDLE_KEY)
-        val spot = mutableListOf<CampingSpots>()
-
-    spot.forEach {
-                view.mDetailsTexts.text = list?.toString()
-            }
 
         return view
 
 
     }
 
-    override fun onChangeEnded(
-        changeHandler: ControllerChangeHandler,
-        changeType: ControllerChangeType
-    ) {
-        super.onChangeEnded(changeHandler, changeType)
-        view?.findViewById<Button>(R.id.mButtonAddPlace)?.setOnClickListener {
-            router.popCurrentController()
-
-            }
-        }
-    }
+}
 

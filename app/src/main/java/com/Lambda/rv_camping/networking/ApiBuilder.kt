@@ -26,6 +26,12 @@ interface ApiBuilder {
     @GET("api/properties")
     fun getAllProperties(@Header("Authorization") authToken: String): Call<Properties>
 
+    // Because the response is nothing, pass in Void into the Call
+    @POST("api/properties")
+    fun createProperty(@Header("Authorization") authToken: String, @Body newProperty: NewProperty): Call<Void>
+
+
+
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"
 
