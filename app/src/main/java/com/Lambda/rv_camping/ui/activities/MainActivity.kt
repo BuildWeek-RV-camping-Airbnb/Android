@@ -81,17 +81,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
 
-            R.id.menu_reserve_property -> {
-                player?.start()
-
-
-                startActivity(Intent(this, ReservePlaceActivity::class.java))
-            }
 
             R.id.menu_see_on_map -> {
                 player?.start()
 
-                startActivity(Intent(this, MapsActivity::class.java))
+          //      startActivity(Intent(this, MapsActivity::class.java))
 
             }
             R.id.menu_sort -> {
