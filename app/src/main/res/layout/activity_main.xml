@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="267dp"
         android:src="@drawable/claudio_testa_unsplash"
-        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_main_add_property"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,16 +35,15 @@
         android:id="@+id/vRecycle"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/myButton"
+        app:layout_constraintBottom_toTopOf="@+id/btn_main_add_property"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
-        android:text="reserve"
-        android:id="@+id/myButton"
+        android:id="@+id/btn_main_add_property"
+        android:text="Add New Property"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         tools:layout_editor_absoluteX="16dp" />
 

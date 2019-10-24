@@ -24,7 +24,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
-
 import com.google.android.gms.maps.MapFragment
 import retrofit2.Call
 import retrofit2.Callback
@@ -68,6 +67,19 @@ class MainController : Controller{
         args?.getSerializable(MainActivity.BUNDLE_KEY)
     }
 
+    override fun onChangeEnded(
+        changeHandler: ControllerChangeHandler,
+        changeType: ControllerChangeType
+    ) {
+        super.onChangeEnded(changeHandler, changeType)
+
+        view?.vRecycle?.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = PropertiesAdapter(LoginController.properties)
+        }
+
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
@@ -76,58 +88,14 @@ class MainController : Controller{
         val view = inflater.inflate(R.layout.activity_main, container, false)
 
 
-        //getAllProperties()
-
-        view?.myButton?.setOnClickListener {
+        view?.btn_main_add_property?.setOnClickListener {
             router.pushController(
                 RouterTransaction.with(AddPlaceController())
                     .pushChangeHandler(HorizontalChangeHandler())
                     .popChangeHandler(HorizontalChangeHandler()))
         }
-        view.vRecycle.apply {
-            layoutManager = LinearLayoutManager(activity)
-            adapter = PropertiesAdapter(LoginController.properties)
-
-
-        }
-
-
-
         return view
     }
-
-    override fun onChangeEnded(
-        changeHandler: ControllerChangeHandler,
-        changeType: ControllerChangeType
-    ) {
-        super.onChangeEnded(changeHandler, changeType)
-        view?.findViewById<Button>(R.id.mButtonAddPlace)?.setOnClickListener {
-            router.pushController(RouterTransaction.with(AddPlaceController(args))
-                .pushChangeHandler(HorizontalChangeHandler())
-                .popChangeHandler(HorizontalChangeHandler())
-            )
-        }
-    }
-    /*
-    fun getAllPropertiesNotInUse(){
-        val call: Call<List<CampingSpots>> = PlaceApiBuilder.create().getAllProperties()
-        call.enqueue(object: Callback<List<CampingSpots>> {
-            override fun onFailure(call: Call<List<CampingSpots>>, t: Throwable) {
-                Log.i("Networking:", "OnFailure ${t.message}")
-            }
-
-            override fun onResponse(call: Call<List<CampingSpots>>, response: Response<List<CampingSpots>>) {
-                if(response.isSuccessful){
-                    Log.i("Networking", "123 ${response.body()}")
-
-                    }
-
-
-
-            }
-
-        })
-    }*/
 
     fun getAllProperties(){
         val call: Call<Properties> = ApiBuilder.create().getAllProperties(LoginController.token)

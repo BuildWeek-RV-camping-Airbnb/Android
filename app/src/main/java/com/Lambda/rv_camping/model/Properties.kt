@@ -1,7 +1,7 @@
 package com.Lambda.rv_camping.model
 
 data class Property (
-    val id: Int,
+    var id: Int,
     var property_name: String,
     var description: String,
     var address: String,
@@ -16,4 +16,15 @@ data class Property (
 
 data class Properties(
     var properties: MutableList<Property>
+)
+
+data class NewProperty(
+    var property_name: String,
+    var description: String,
+    var address: String,
+    var city: String,
+    var state: String,
+    var price: Int,
+    var rating: Number,
+    var owner_id: Int
 )
