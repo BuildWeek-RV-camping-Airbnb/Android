@@ -125,4 +125,20 @@ class AddPlaceController : Controller {
             return true
         }
     }
+
+    private fun validatePrice(): Boolean{
+        price = view?.text_input_price?.editText?.text.toString().trim().toInt()
+
+        if(address.isEmpty()){
+            view?.text_input_price?.error = "Field can't be empty"
+            validatedPrice = false
+            return false
+        }
+        else{
+            view?.text_input_price?.error = null
+            view?.text_input_price?.isErrorEnabled = false
+            validatedPrice = true
+            return true
+        }
+    }
 }
