@@ -4,7 +4,6 @@ import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.model.User
-import com.Lambda.rv_camping.ui.controllers.AddPlaceController
 import com.Lambda.rv_camping.ui.controllers.LoginController
 import org.amshove.kluent.shouldBeGreaterThan
 import org.junit.Test
