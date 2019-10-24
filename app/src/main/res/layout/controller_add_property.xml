@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mAddPlaceLayout"
-    android:padding="16dp"
-    >
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tv_add_property"
@@ -15,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="40sp"
-        android:text="@string/add_new_property"
+        android:text="Add New Property"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
