@@ -14,16 +14,20 @@ import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
+import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
+import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class PropertiesAdapter (private val properties: MutableList<Property>?) : RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
+class PropertiesAdapter(private val properties: MutableList<Property>?) :
+    RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
 
     private var context: Context? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         context = parent.context
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,7 +54,6 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
         holder.reserve.setOnClickListener {
             val intent = Intent(context, ReservePlaceActivity::class.java)
 
-
             intent.putExtra("name", currentProperty?.property_name)
             intent.putExtra("description", currentProperty?.description)
             intent.putExtra("address", currentProperty?.address)
@@ -59,7 +62,28 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
             intent.putExtra("price", price)
             intent.putExtra("rating", rating)
 
+
+            var btnClicked: Boolean = false
+
+
+
+            if (btnClicked == false) {
+                btnClicked = true
+                intent.putExtra("startDate", "YYYY-MM-DD") ?: "YYYY-MM-DD"
+                intent.putExtra("endDate", "YYYY-MM-DD")
+            }
+
+            if(btnClicked == true)
+            {
+                btnClicked = false
+                intent.putExtra("startDate", DateFragmentTo.startDate) ?: "YYYY-MM-DD"
+                intent.putExtra("endDate", DateFragmentFrom.endDate)
+            }
+
+
             context?.startActivity(intent)
+
+            holder.reserve.text = "Reservation Information"
         }
     }
 

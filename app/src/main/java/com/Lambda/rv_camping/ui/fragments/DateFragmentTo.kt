@@ -11,6 +11,10 @@ import java.util.*
 
 class DateFragmentTo: DialogFragment(), DatePickerDialog.OnDateSetListener{
 
+    companion object{
+        var startDate: String? = null
+    }
+
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
 
         var fixedMonth: String = "${month+1}"
@@ -23,6 +27,7 @@ class DateFragmentTo: DialogFragment(), DatePickerDialog.OnDateSetListener{
             fixedDay = "0${day.toString()}"
         }
         val editable = SpannableStringBuilder("$year-${fixedMonth}-$fixedDay")
+        startDate = editable.toString()
         activity?.tv_reserve_date_end?.text = editable
     }
 
