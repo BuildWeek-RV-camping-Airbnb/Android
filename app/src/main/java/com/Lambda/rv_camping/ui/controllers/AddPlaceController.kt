@@ -12,6 +12,7 @@ import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.Lambda.rv_camping.util.getString
+import com.Lambda.rv_camping.util.toast
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
@@ -173,13 +174,15 @@ class AddPlaceController : Controller {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if(response.isSuccessful){
                     Log.i("Add Property", "OnResponseSuccess ${response.message()}")
-                    val nProperty = Property(0, propertyName, description, address, city, state, "", price, 3, 0)
+                    val nProperty = Property(0, propertyName, description, address, city, state, "", price, 3, 5)
                     MainController.propertyListt.add(nProperty)
+                    activity?.toast("Property has successfully been added")
                     if(validateAllData())
                         router.popCurrentController()
 
                 }
                 else{
+                    activity?.toast("Failed to add property")
                     Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
                 }
             }
