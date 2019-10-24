@@ -43,7 +43,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.ReservePlaceActivity" />
-        <activity android:name=".ui.activities.AddPlaceActivity" />
     </application>
 
 </manifest>
