@@ -93,4 +93,20 @@ class AddPlaceController : Controller {
             return true
         }
     }
+
+    private fun validateCity(): Boolean{
+        city = view?.text_input_add_city?.editText?.text.toString().trim()
+
+        if(address.isEmpty()){
+            view?.text_input_add_city?.error = "Field can't be empty"
+            validatedCity = false
+            return false
+        }
+        else{
+            view?.text_input_add_city?.error = null
+            view?.text_input_add_city?.isErrorEnabled = false
+            validatedCity = true
+            return true
+        }
+    }
 }
