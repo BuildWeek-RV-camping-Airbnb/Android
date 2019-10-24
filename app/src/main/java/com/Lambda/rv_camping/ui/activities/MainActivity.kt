@@ -2,6 +2,7 @@ package com.Lambda.rv_camping.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             adapter = RecyclerRVAdapter(campingList)
 
         }*/
+
+        if(LoginController.isOwner == false){
+            btn_main_add_property.visibility = View.GONE
+        }
+
 
         vRecycle?.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)

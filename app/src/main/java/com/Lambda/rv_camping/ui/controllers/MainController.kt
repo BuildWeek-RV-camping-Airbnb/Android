@@ -19,6 +19,7 @@ import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.google.android.gms.maps.GoogleMap
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -78,6 +79,10 @@ class MainController : Controller{
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
 
+        if(LoginController.isOwner == false){
+            view?.btn_main_add_property?.visibility = View.GONE
+        }
+
         getAllProperties()
 
         val view = inflater.inflate(R.layout.activity_main, container, false)
@@ -107,6 +112,13 @@ class MainController : Controller{
                     view?.vRecycle?.apply {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = PropertiesAdapter(LoginController.properties)
+                    }
+
+                    if(LoginController.isOwner == false){
+                        view?.btn_main_add_property?.visibility = View.GONE
+                    }
+                    else{
+                        view?.btn_main_add_property?.visibility = View.VISIBLE
                     }
                 }
                 else{
