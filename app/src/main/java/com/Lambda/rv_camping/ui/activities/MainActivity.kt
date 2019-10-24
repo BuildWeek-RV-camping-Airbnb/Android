@@ -4,10 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
@@ -33,14 +30,16 @@ class MainActivity : AppCompatActivity() {
     private val container: ViewGroup by lazy {
         this.findViewById<ViewGroup>(R.id.cl_activity_main_parent)
     }
+
     companion object {
         val campingList = mutableListOf(
-            CampingSpots("djlkj", "1","1 sams sd", 1f),
-            CampingSpots("ds", "2","fsd", 42f)
+            CampingSpots("djlkj", "1", "1 sams sd", 1f),
+            CampingSpots("ds", "2", "fsd", 42f)
 
         )
         val BUNDLE_KEY = "key"
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -58,28 +57,27 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             //adapter = PropertiesAdapter(MainController.propertyList)
         }
-        
+
         // Could have also just use cl_activity_main_parent instead of container
-            router = Conductor.attachRouter(this, container, savedInstanceState)
-            if (!router.hasRootController()) {
-                router.setRoot(RouterTransaction.with(LoginController()))
+        router = Conductor.attachRouter(this, container, savedInstanceState)
+        if (!router.hasRootController()) {
+            router.setRoot(RouterTransaction.with(LoginController()))
 
 
-
-            }
-
+        }
 
 
 
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.als_options_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
 
 
             R.id.menu_see_on_map -> {
@@ -91,7 +89,8 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_sort -> {
                 player?.start()
 
-                Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG)
+                    .show()
 
             }
             R.id.menu_sign_out -> {
@@ -103,13 +102,14 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
     override fun onStop() {
         super.onStop()
         player?.stop()
     }
 
 
-    override fun onBackPressed(){
+    override fun onBackPressed() {
         router.popCurrentController()
         player?.start()
     }

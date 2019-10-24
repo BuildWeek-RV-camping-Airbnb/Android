@@ -113,6 +113,13 @@ class MainController : Controller{
                     view?.vRecycle?.apply {
                         layoutManager = LinearLayoutManager(activity)
                         adapter = PropertiesAdapter(LoginController.properties)
+
+                        if(LoginController.isOwner == false){
+                            view?.btn_main_add_property?.visibility = View.GONE
+                        }
+                        else{
+                            view?.btn_main_add_property?.visibility = View.VISIBLE
+                        }
                     }
                 }
                 else{

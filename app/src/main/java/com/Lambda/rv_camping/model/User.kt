@@ -16,6 +16,8 @@ data class UserLogin(
 )
 
 data class UserResponse(
-    val message: String,
+    val username: String,
+    val id: Int,
+    val owner: Boolean,
     val token: String
 )
