@@ -1,6 +1,8 @@
 package com.Lambda.rv_camping.adapter
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
@@ -20,7 +23,7 @@ import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
 
-class PropertiesAdapter(private val properties: MutableList<Property>?) :
+class PropertiesAdapter(private var properties: MutableList<Property>?) :
     RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
 
     private var context: Context? = null
@@ -34,7 +37,7 @@ class PropertiesAdapter(private val properties: MutableList<Property>?) :
 
     override fun getItemCount(): Int {
         if (properties != null) {
-            return properties.size
+            return properties!!.size
         }
         return 10
     }
@@ -52,46 +55,68 @@ class PropertiesAdapter(private val properties: MutableList<Property>?) :
         val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
         holder.rating.text = rating
 
-
-
-        holder.reserve.setOnClickListener {
-            val intent = Intent(context, ReservePlaceActivity::class.java)
-
-            intent.putExtra("name", currentProperty?.property_name)
-            intent.putExtra("description", currentProperty?.description)
-            intent.putExtra("address", currentProperty?.address)
-            intent.putExtra("city", currentProperty?.city)
-            intent.putExtra("state", currentProperty?.state)
-            intent.putExtra("price", price)
-            intent.putExtra("rating", rating)
-
-
-            var btnClicked: Boolean = false
-
-
-
-            if (btnClicked == false) {
-                btnClicked = true
-                intent.putExtra("startDate", "YYYY-MM-DD") ?: "YYYY-MM-DD"
-                intent.putExtra("endDate", "YYYY-MM-DD")
+        if (LoginController.isOwner) {
+            holder.reserve.text = "Delete Listing"
+            holder.reserve.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Delete Confirmation")
+                builder.setMessage("Are you sure you want to delete this property?")
+                builder.setPositiveButton("YES") { dialogInterface, i ->
+                    holder.cardViewDeleteOnLongPress(position)
+                    Toast.makeText(
+                        context,
+                        "Property has been successfully deleted",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                builder.setNegativeButton("NO"){dialogInterface, i ->
+                    dialogInterface.dismiss()
+                }
+                builder.show()
             }
 
-            if(btnClicked == true)
-            {
-                btnClicked = false
-                intent.putExtra("startDate", DateFragmentTo.startDate) ?: "YYYY-MM-DD"
-                intent.putExtra("endDate", DateFragmentFrom.endDate)
+        } else {
+            holder.reserve.text = "Reserve Property"
+            holder.reserve.setOnClickListener {
+                val intent = Intent(context, ReservePlaceActivity::class.java)
+
+                intent.putExtra("name", currentProperty?.property_name)
+                intent.putExtra("description", currentProperty?.description)
+                intent.putExtra("address", currentProperty?.address)
+                intent.putExtra("city", currentProperty?.city)
+                intent.putExtra("state", currentProperty?.state)
+                intent.putExtra("price", price)
+                intent.putExtra("rating", rating)
+
+
+                var btnClicked: Boolean = false
+
+
+
+                if (btnClicked == false) {
+                    btnClicked = true
+                    intent.putExtra("startDate", "YYYY-MM-DD") ?: "YYYY-MM-DD"
+                    intent.putExtra("endDate", "YYYY-MM-DD")
+                }
+
+                if (btnClicked == true) {
+                    btnClicked = false
+                    intent.putExtra("startDate", DateFragmentTo.startDate) ?: "YYYY-MM-DD"
+                    intent.putExtra("endDate", DateFragmentFrom.endDate)
+                }
+
+
+                context?.startActivity(intent)
+
+                holder.reserve.text = "Reservation Information"
             }
-
-
-            context?.startActivity(intent)
-
-            holder.reserve.text = "Reservation Information"
         }
+
+
     }
 
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val propertyName: TextView = itemView.tv_property_name
         val description: TextView = itemView.tv_property_description
@@ -101,6 +126,16 @@ class PropertiesAdapter(private val properties: MutableList<Property>?) :
         val price: TextView = itemView.tv_property_price
         val rating: TextView = itemView.tv_property_rating
         val reserve: Button = itemView.btn_property_reserve
+
+        fun cardViewDeleteOnLongPress(itemPosition: Int) {
+            LoginController.properties?.removeAt(itemPosition)
+            updateRV(LoginController.properties)
+        }
+    }
+
+    fun updateRV(newList: MutableList<Property>?) {
+        properties = newList
+        notifyDataSetChanged()
     }
 
 }
