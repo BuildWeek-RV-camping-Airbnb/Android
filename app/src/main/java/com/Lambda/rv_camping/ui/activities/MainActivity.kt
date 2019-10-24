@@ -1,6 +1,7 @@
 package com.Lambda.rv_camping.ui.activities
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
@@ -16,6 +17,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    var player: MediaPlayer? = null
     var test: Int = R.layout.activity_main
         get()= field
         set(value){
@@ -38,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(test)
 
 
-
+        player = MediaPlayer.create(this, R.raw.accomplished)
 
         /*vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -72,16 +75,34 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_see_on_map -> startActivity(Intent(this, MapsActivity::class.java))
-            R.id.menu_sort -> Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
-            R.id.menu_sign_out -> startActivity(Intent(this, MainActivity::class.java))
+            R.id.menu_see_on_map -> {
+
+                player?.start()
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
+            R.id.menu_sort -> {
+                player?.start()
+                Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
+            }
+            R.id.menu_sign_out -> {
+                player?.start()
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+    override fun onStop() {
+
+        super.onStop()
+
+        player?.stop()
+
     }
 
 
 
     override fun onBackPressed(){
+        player?.start()
         router.popCurrentController()
     }
 

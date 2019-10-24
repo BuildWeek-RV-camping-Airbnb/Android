@@ -128,7 +128,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         val reserve: Button = itemView.btn_property_reserve
 
         fun cardViewDeleteOnLongPress(itemPosition: Int) {
-            LoginController.properties?.minus(itemPosition)
+            LoginController.properties?.removeAt(itemPosition)
             updateRV(LoginController.properties)
         }
     }
