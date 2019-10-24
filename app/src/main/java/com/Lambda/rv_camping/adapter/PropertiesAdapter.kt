@@ -49,6 +49,16 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
 
         holder.reserve.setOnClickListener {
             val intent = Intent(context, ReservePlaceActivity::class.java)
+
+
+            intent.putExtra("name", currentProperty?.property_name)
+            intent.putExtra("description", currentProperty?.description)
+            intent.putExtra("address", currentProperty?.address)
+            intent.putExtra("city", currentProperty?.city)
+            intent.putExtra("state", currentProperty?.state)
+            intent.putExtra("price", currentProperty?.price)
+            intent.putExtra("rating", currentProperty?.rating)
+
             context?.startActivity(intent)
         }
     }
