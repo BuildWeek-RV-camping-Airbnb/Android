@@ -1,17 +1,24 @@
 package com.Lambda.rv_camping.ui.controllers
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
+import com.Lambda.rv_camping.model.NewProperty
+import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.Lambda.rv_camping.util.getString
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import kotlinx.android.synthetic.main.controller_add_property.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class AddPlaceController : Controller {
 
@@ -30,7 +37,7 @@ class AddPlaceController : Controller {
     lateinit var address: String
     lateinit var city: String
     lateinit var state: String
-    private var price: Int? = null
+    private var price: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_add_property, container, false)
@@ -43,8 +50,7 @@ class AddPlaceController : Controller {
             validateState()
             validatePrice()
 
-            if(validateAllData())
-                router.popCurrentController()
+            createProperty()
         }
 
 
@@ -154,5 +160,30 @@ class AddPlaceController : Controller {
     fun validateAllData(): Boolean {
         return validatedPropertyName && validatedDescription && validatedAddress &&
                 validatedCity && validatedState && validatedPrice
+    }
+
+    // Response is empty
+    fun createProperty(){
+        val call:Call<Void> = ApiBuilder.create().createProperty(LoginController.token, NewProperty(propertyName, description, address, city, state, price, 3, 5))
+        call.enqueue(object: Callback<Void>{
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.i("Add Property", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.i("Add Property", "OnResponseSuccess ${response.message()}")
+                    val nProperty = Property(0, propertyName, description, address, city, state, "", price, 3, 0)
+                    MainController.propertyListt.add(nProperty)
+                    if(validateAllData())
+                        router.popCurrentController()
+
+                }
+                else{
+                    Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
+        })
     }
 }

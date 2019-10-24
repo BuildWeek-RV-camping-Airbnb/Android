@@ -14,6 +14,8 @@ import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.MainActivity
 import com.bluelinelabs.conductor.Controller
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.google.android.gms.maps.GoogleMap
@@ -59,6 +61,19 @@ class MainController : Controller, OnMapReadyCallback {
     constructor() : super()
     constructor(args: Bundle?) : super(args){
         args?.getSerializable(MainActivity.BUNDLE_KEY)
+    }
+
+    override fun onChangeEnded(
+        changeHandler: ControllerChangeHandler,
+        changeType: ControllerChangeType
+    ) {
+        super.onChangeEnded(changeHandler, changeType)
+
+        view?.vRecycle?.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = PropertiesAdapter(LoginController.properties)
+        }
+
     }
 
 
