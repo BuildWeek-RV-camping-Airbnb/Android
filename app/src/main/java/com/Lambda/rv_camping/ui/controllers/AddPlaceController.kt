@@ -109,4 +109,20 @@ class AddPlaceController : Controller {
             return true
         }
     }
+
+    private fun validateState(): Boolean{
+        state = view?.text_input_add_state?.editText?.text.toString().trim()
+
+        if(address.isEmpty()){
+            view?.text_input_add_state?.error = "Field can't be empty"
+            validatedState = false
+            return false
+        }
+        else{
+            view?.text_input_add_state?.error = null
+            view?.text_input_add_state?.isErrorEnabled = false
+            validatedState = true
+            return true
+        }
+    }
 }
