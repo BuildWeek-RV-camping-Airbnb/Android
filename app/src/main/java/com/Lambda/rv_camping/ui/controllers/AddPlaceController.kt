@@ -24,6 +24,7 @@ class AddPlaceController : Controller {
     private var validatedCity: Boolean = false
     private var validatedState: Boolean = false
     private var validatedPrice: Boolean = false
+    private var allValidated: Boolean = false
 
     lateinit var propertyName: String
     lateinit var description: String
@@ -36,7 +37,7 @@ class AddPlaceController : Controller {
         val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
         view.btn_property_add.setOnClickListener {
-            validatedPropertyName
+            validatePropertyName()
             //router.popCurrentController()
         }
 
@@ -49,7 +50,23 @@ class AddPlaceController : Controller {
         propertyName = view?.text_input_add_property_name?.editText?.text.toString().trim()
 
         if(propertyName.isEmpty()){
-            view?.text_input_add_property_name?.error = "Feidl can't be empty"
+            view?.text_input_add_property_name?.error = "Field can't be empty"
+            validatedPropertyName = false
+            return false
+        }
+        else{
+            view?.text_input_add_property_name?.error = null
+            view?.text_input_add_property_name?.isErrorEnabled = false
+            validatedPropertyName = true
+            return true
+        }
+    }
+
+    private fun validateDescription(): Boolean{
+        description = view?.text_input_add_description?.editText?.text.toString().trim()
+
+        if(description.isEmpty()){
+            view?.text_input_add_property_name?.error = "Field can't be empty"
             validatedPropertyName = false
             return false
         }
