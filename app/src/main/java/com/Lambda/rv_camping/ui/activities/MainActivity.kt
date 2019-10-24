@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_add_property -> startActivity(Intent(this, AddPlaceActivity::class.java))
+            R.id.menu_add_property -> startActivity(Intent(this, ReservePlaceActivity::class.java))
 
             R.id.menu_see_on_map -> startActivity(Intent(this, MapsActivity::class.java))
             R.id.menu_sort -> Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
