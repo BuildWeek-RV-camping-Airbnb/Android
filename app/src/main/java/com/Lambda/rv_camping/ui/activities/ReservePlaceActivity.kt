@@ -1,18 +1,14 @@
 package com.Lambda.rv_camping.ui.activities
 
-import android.app.Activity
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.Lambda.rv_camping.R
-import com.Lambda.rv_camping.ui.controllers.MainController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import com.Lambda.rv_camping.util.toast
 import kotlinx.android.synthetic.main.activity_reserve_place.*
 
-class ReservePlaceActivity() : AppCompatActivity() {
+class ReservePlaceActivity : AppCompatActivity() {
 
     companion object {
         const val PASSED_DATE = "999"
