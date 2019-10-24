@@ -32,7 +32,7 @@ class LoginController : Controller(){
     companion object{
         var successfulLogin:Boolean = false
         lateinit var token: String
-
+        var isOwner: Boolean = false
         var properties: MutableList<Property>? = null
     }
 
@@ -66,7 +66,7 @@ class LoginController : Controller(){
                     //Gives the transition a horizontal slide when popping
                     .popChangeHandler(HorizontalChangeHandler()))
         }
-        
+
         return view
     }
 
@@ -146,6 +146,7 @@ class LoginController : Controller(){
                     token = response.body()!!.token
                     activity?.toastRegister("$username")
                     successfulLogin = true
+                    isOwner = response.body()!!.owner
                 }
                 else{
                     Log.i("Login", "Failure ${response.errorBody()}")

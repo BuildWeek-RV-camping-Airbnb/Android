@@ -14,6 +14,7 @@ import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
+import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import kotlinx.android.synthetic.main.item_property_view.view.*
@@ -50,6 +51,8 @@ class PropertiesAdapter(private val properties: MutableList<Property>?) :
         holder.price.text = price
         val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
         holder.rating.text = rating
+
+
 
         holder.reserve.setOnClickListener {
             val intent = Intent(context, ReservePlaceActivity::class.java)
