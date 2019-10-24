@@ -80,8 +80,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+
             R.id.menu_reserve_property -> {
                 player?.start()
+=======
+            R.id.menu_add_property -> startActivity(Intent(this, ReservePlaceActivity::class.java))
+
 
                 startActivity(Intent(this, ReservePlaceActivity::class.java))
             }
