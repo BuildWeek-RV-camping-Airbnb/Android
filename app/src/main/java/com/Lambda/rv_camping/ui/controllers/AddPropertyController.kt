@@ -181,7 +181,7 @@ class AddPropertyController : Controller {
                 if(response.isSuccessful){
                     Log.i("Add Property", "OnResponseSuccess ${response.message()}")
                     val nProperty = Property(0, propertyName, description, address, city, state, "", price, 3, 5)
-                    MainController.propertyListt.add(nProperty)
+                    MainController.propertyListt.plus(nProperty)
                     view?.pb_add_property?.gone()
                     activity?.toast("Property has successfully been added")
                     router.popCurrentController()
