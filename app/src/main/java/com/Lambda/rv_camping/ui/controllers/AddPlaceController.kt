@@ -66,16 +66,31 @@ class AddPlaceController : Controller {
         description = view?.text_input_add_description?.editText?.text.toString().trim()
 
         if(description.isEmpty()){
-            view?.text_input_add_property_name?.error = "Field can't be empty"
-            validatedPropertyName = false
+            view?.text_input_add_description?.error = "Field can't be empty"
+            validatedDescription = false
             return false
         }
         else{
-            view?.text_input_add_property_name?.error = null
-            view?.text_input_add_property_name?.isErrorEnabled = false
-            validatedPropertyName = true
+            view?.text_input_add_description?.error = null
+            view?.text_input_add_description?.isErrorEnabled = false
+            validatedDescription = true
             return true
         }
     }
 
+    private fun validateAddress(): Boolean{
+        address = view?.text_input_add_address?.editText?.text.toString().trim()
+
+        if(address.isEmpty()){
+            view?.text_input_add_address?.error = "Field can't be empty"
+            validatedAddress = false
+            return false
+        }
+        else{
+            view?.text_input_add_address?.error = null
+            view?.text_input_add_address?.isErrorEnabled = false
+            validatedAddress = true
+            return true
+        }
+    }
 }
