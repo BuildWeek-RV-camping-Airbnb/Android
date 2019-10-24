@@ -1,6 +1,7 @@
 package com.Lambda.rv_camping.ui.activities
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -26,6 +27,8 @@ import okhttp3.internal.wait
 
 class MainActivity : AppCompatActivity() {
 
+    var player: MediaPlayer? = null
+
     private lateinit var router: Router
     private val container: ViewGroup by lazy {
         this.findViewById<ViewGroup>(R.id.cl_activity_main_parent)
@@ -41,6 +44,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        player = MediaPlayer.create(this, R.raw.accomplished)
+
+
         /*vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = RecyclerRVAdapter(campingList)
@@ -73,19 +80,46 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+
+            R.id.menu_reserve_property -> {
+                player?.start()
+=======
             R.id.menu_add_property -> startActivity(Intent(this, ReservePlaceActivity::class.java))
 
-            R.id.menu_see_on_map -> startActivity(Intent(this, MapsActivity::class.java))
-            R.id.menu_sort -> Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
-            R.id.menu_sign_out -> startActivity(Intent(this, MainActivity::class.java))
+
+                startActivity(Intent(this, ReservePlaceActivity::class.java))
+            }
+
+            R.id.menu_see_on_map -> {
+                player?.start()
+
+                startActivity(Intent(this, MapsActivity::class.java))
+
+            }
+            R.id.menu_sort -> {
+                player?.start()
+
+                Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
+
+            }
+            R.id.menu_sign_out -> {
+                player?.start()
+
+                startActivity(Intent(this, MainActivity::class.java))
+
+            }
         }
         return super.onOptionsItemSelected(item)
     }
-
+    override fun onStop() {
+        super.onStop()
+        player?.stop()
+    }
 
 
     override fun onBackPressed(){
         router.popCurrentController()
+        player?.start()
     }
 
 
