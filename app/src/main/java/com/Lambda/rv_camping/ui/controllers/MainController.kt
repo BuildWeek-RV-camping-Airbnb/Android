@@ -26,20 +26,16 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
 import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.controller_login.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainController : Controller, OnMapReadyCallback {
-
-    var mMap: GoogleMap? = null
+class MainController : Controller{
 
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
     companion object {
         val campingList = mutableListOf(
