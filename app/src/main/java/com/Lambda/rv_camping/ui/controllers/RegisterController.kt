@@ -42,6 +42,10 @@ class RegisterController : Controller() {
             validateEmail()
             validatePassword()
 
+            if(view.cb_register_land_owner.isChecked){
+                isOwner = true
+            }
+
             // If all the information is good, then register the user and go back to login
             if (validateAllData()) {
                 createUser()
@@ -208,9 +212,7 @@ class RegisterController : Controller() {
 
 }
 /*
-if(view.cb_register_land_owner.isChecked){
-            isOwner = true
-        }
+
 
     private fun createUserr(){
         val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))

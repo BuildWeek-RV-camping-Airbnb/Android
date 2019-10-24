@@ -1,76 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activities.ReservePlaceActivity">
+    android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="210dp"
-        android:layout_height="299dp"
+        android:id="@+id/iv_property_image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/rv_camping"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/rv_camping" />
-
-    <TextView
-        android:id="@+id/mTextDetail"
-        android:layout_width="201dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="160dp"
-        android:text="@string/this_place_is_amazing_that_sits_at_top_of_the_mountain_so_you_can_learn_how_to_fly"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mTextDateFrom"
+        android:id="@+id/tv_property_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/pick_date_from"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="PROPERTY NAME GOES HERE"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@id/iv_property_image" />
 
     <TextView
-        android:id="@+id/mTextTo"
+        android:id="@+id/tv_property_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/to"
-        app:layout_constraintBottom_toTopOf="@+id/mButtonReservePlace"
-        app:layout_constraintEnd_toStartOf="@+id/mTextDateTo"
-        app:layout_constraintStart_toEndOf="@+id/mTextDateFrom"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.515" />
+        android:layout_margin="8dp"
+        android:text="DESCRIPTION GOES HERE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_name" />
 
     <TextView
-        android:id="@+id/mTextDateTo"
+        android:id="@+id/tv_property_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/pick_date_to"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="ADDRESS GOES HERE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_property_description" />
+
+    <TextView
+        android:id="@+id/tv_property_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="CITY GOES HERE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_address" />
+
+    <TextView
+        android:id="@+id/tv_property_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="STATE GOES HERE"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_city" />
+
+    <TextView
+        android:id="@+id/tv_property_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:text="PRICE GOES HERE"
+        app:layout_constraintTop_toTopOf="@id/tv_property_city"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_property_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:text="RATING GOES HERE"
+        app:layout_constraintBottom_toBottomOf="@id/tv_property_state"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_reserve_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Date:"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="32sp"
+        android:layout_margin="8dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_state" />
+
+    <TextView
+        android:id="@+id/tv_reserve_end"
+        android:text="End Date:"
+        app:layout_constraintTop_toBottomOf="@id/tv_reserve_start"
+        android:layout_margin="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="32sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_reserve_date_start"
+        android:textSize="32sp"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@id/tv_property_rating"
+        app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
+        android:paddingBottom="32sp"
+        android:text="YYYY-MM-DD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/mTextPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/price"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/mTextDateTo"
+        android:id="@+id/tv_reserve_date_end"
+        android:text="YYYY-MM-DD"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/tv_reserve_date_start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/mTextDetail" />
+        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/mButtonReservePlace"
+        android:id="@+id/btn_property_reserve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reserve"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="8dp"
+        android:text="Reserve Property"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
