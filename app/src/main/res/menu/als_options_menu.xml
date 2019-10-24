@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/menu_add_property"
+            android:title="Rent Your Property Out"/>
+        <item
+            android:id="@+id/menu_see_on_map"
+            android:title="See On Map"
+            app:showAsAction="always"
+            android:icon="@drawable/location_icon"/>
+
+        <item
+            android:id="@+id/menu_sort"
+            android:title="Sort"/>
+        <item
+            android:id="@+id/menu_sign_out"
+            android:title="Sign Out"/>
+
+    </group>
+</menu>
