@@ -13,34 +13,52 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import kotlinx.android.synthetic.main.controller_add_property.view.*
 
-class AddPlaceController : Controller{
+class AddPlaceController : Controller {
 
-    constructor(): super()
-    constructor(args: Bundle?):super(args)
+    constructor() : super()
+    constructor(args: Bundle?) : super(args)
+
+    private var validatedPropertyName: Boolean = false
+    private var validatedDescription: Boolean = false
+    private var validatedAddress: Boolean = false
+    private var validatedCity: Boolean = false
+    private var validatedState: Boolean = false
+    private var validatedPrice: Boolean = false
+
+    lateinit var propertyName: String
+    lateinit var description: String
+    lateinit var address: String
+    lateinit var city: String
+    lateinit var state: String
+    private var price: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-     val view = inflater.inflate(R.layout.controller_add_property, container, false)
-        view?.mButtonAddPlace?.setOnClickListener {
-            val spot = mutableListOf<CampingSpots>()
-            val title = view.mTitleText.getString()
-            val address = view.mAddressText.getString()
-            val price = view.mPriceText.getString().toFloat()
-            val detail =  view.mDescriptionText.getString()
-         //  for (it in spot) {
-         //      spot.add(CampingSpots(property_name, description))
-         //  }
-            MainController.propertyListt
-            MainController.campingList.add(CampingSpots(title, address, detail, price))
-            args.putSerializable(MainActivity.BUNDLE_KEY, CampingSpots(title, address, detail, price))
+        val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
-            router.pushController(
-                RouterTransaction.with(MainController(args))
-                    .pushChangeHandler(HorizontalChangeHandler())
-                    .popChangeHandler(HorizontalChangeHandler())
-            )
-
+        view.btn_property_add.setOnClickListener {
+            validatedPropertyName
+            //router.popCurrentController()
         }
-    return view
+
+
+
+        return view
+    }
+
+    private fun validatePropertyName(): Boolean{
+        propertyName = view?.text_input_add_property_name?.editText?.text.toString().trim()
+
+        if(propertyName.isEmpty()){
+            view?.text_input_add_property_name?.error = "Feidl can't be empty"
+            validatedPropertyName = false
+            return false
+        }
+        else{
+            view?.text_input_add_property_name?.error = null
+            view?.text_input_add_property_name?.isErrorEnabled = false
+            validatedPropertyName = true
+            return true
+        }
     }
 
 }
