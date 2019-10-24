@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +17,20 @@ import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import com.Lambda.rv_camping.ui.controllers.LoginController
+import com.Lambda.rv_camping.ui.controllers.MainController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
+import com.Lambda.rv_camping.util.gone
+import com.Lambda.rv_camping.util.toast
+import kotlinx.android.synthetic.main.controller_add_property.view.*
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PropertiesAdapter(private var properties: MutableList<Property>?) :
     RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
@@ -136,6 +145,37 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
     fun updateRV(newList: MutableList<Property>?) {
         properties = newList
         notifyDataSetChanged()
+    }
+
+    /*
+    Delete logic
+          val propertyId = properties?.get(position)
+        var id = propertyId?.id
+
+        val num = id?.minus(1)
+        if (num != null) {
+            deleteProperty(num)
+        }
+     */
+
+    fun deleteProperty(id: Int){
+        val call: Call<Void> = ApiBuilder.create().deleteProperty(LoginController.token, id)
+        call.enqueue(object: Callback<Void>{
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.i("Add Property", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.i("Delete Property", "OnResponseSuccess ${response.message()}")
+
+                }
+                else{
+                    Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
+        })
     }
 
 }

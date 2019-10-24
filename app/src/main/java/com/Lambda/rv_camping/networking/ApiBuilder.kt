@@ -6,10 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.util.concurrent.TimeUnit
 
 interface ApiBuilder {
@@ -30,7 +27,10 @@ interface ApiBuilder {
     @POST("api/properties")
     fun createProperty(@Header("Authorization") authToken: String, @Body newProperty: NewProperty): Call<Void>
 
-
+    // IDs in the backend are all over the place. Therefore don't use this code.
+    @DELETE("api/properties/{id}")
+    fun deleteProperty(@Header("Authorization") authToken:String,
+                       @Path("id")id: Int): Call<Void>
 
     companion object{
         const val BASE_URL = "https://bw-rvnb.herokuapp.com/"
