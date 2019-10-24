@@ -1,8 +1,11 @@
 package com.Lambda.rv_camping.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -10,11 +13,16 @@ import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
 
 class PropertiesAdapter (private val properties: MutableList<Property>?) : RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
+
+    private var context: Context? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        context = parent.context
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
         return ViewHolder(view)
     }
@@ -38,6 +46,11 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
         holder.price.text = price
         val rating = currentProperty?.rating.toString() + "/5"
         holder.rating.text = rating
+
+        holder.reserve.setOnClickListener {
+            val intent = Intent(context, ReservePlaceActivity::class.java)
+            context?.startActivity(intent)
+        }
     }
 
 
@@ -50,6 +63,7 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
         val state: TextView = itemView.tv_property_state
         val price: TextView = itemView.tv_property_price
         val rating: TextView = itemView.tv_property_rating
+        val reserve: Button = itemView.btn_property_reserve
     }
 
 }
