@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    var test: Int = R.layout.activity_main
+    var layout: Int = R.layout.activity_main
         get()= field
         set(value){
             field = value
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(test)
+        setContentView(layout)
 
 
 
