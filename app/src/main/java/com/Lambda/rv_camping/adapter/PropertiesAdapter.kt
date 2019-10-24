@@ -42,9 +42,9 @@ class PropertiesAdapter (private val properties: MutableList<Property>?) : Recyc
         holder.address.text = currentProperty?.address
         holder.city.text = currentProperty?.city
         holder.state.text = currentProperty?.state
-        val price = "$ " + currentProperty?.price.toString()
+        val price = "$" + currentProperty?.price.toString() + " Per Day"
         holder.price.text = price
-        val rating = currentProperty?.rating.toString() + "/5"
+        val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
         holder.rating.text = rating
 
         holder.reserve.setOnClickListener {
