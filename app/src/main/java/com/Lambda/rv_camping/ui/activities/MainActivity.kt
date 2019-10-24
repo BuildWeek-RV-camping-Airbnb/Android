@@ -3,10 +3,7 @@ package com.Lambda.rv_camping.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
@@ -41,6 +38,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
         /*vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = RecyclerRVAdapter(campingList)
@@ -74,7 +75,6 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.menu_add_property -> startActivity(Intent(this, ReservePlaceActivity::class.java))
-
             R.id.menu_see_on_map -> startActivity(Intent(this, MapsActivity::class.java))
             R.id.menu_sort -> Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
             R.id.menu_sign_out -> startActivity(Intent(this, MainActivity::class.java))
