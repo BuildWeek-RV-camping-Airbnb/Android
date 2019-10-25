@@ -7,8 +7,7 @@
     <string name="pick_date_to">pick date to</string>
     <string name="price">4.99</string>
     <string name="title_activity_maps">Map</string>
-    <string name="AIAIzaSyDDU68O16rA43aIAIzaSyDDU68O16rA43aIRV9wb6oA3MwovFkdI60AIzaSyDDU68O16rA43aIRV9wb6oA3MwovFkdI60RV9wb6oA3MwovFkdI6060">AIzaSyDDU68O16rA43aIRV9wb6oA3MwovFkdI60</string>
-    <string name="add_new_property">Add New Property</string>
+    <string name="ApiKey">AIzaSyBSe-KbbfArXpJYUDvxq0jADwiY51vQJis</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -37,4 +36,7 @@
     <string name="property_name">Property Name</string>
     <string name="description">Description</string>
     <string name="address">Address</string>
+    <string name="add_new_property">Add New Property</string>
+    <string name="state">State</string>
+    <string name="_price">Price</string>
 </resources>

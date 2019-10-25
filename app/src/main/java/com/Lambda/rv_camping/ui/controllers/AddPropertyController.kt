@@ -1,5 +1,6 @@
 package com.Lambda.rv_camping.ui.controllers
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,8 +42,10 @@ class AddPropertyController : Controller {
     lateinit var city: String
     lateinit var state: String
     private var price: Int = 0
+    private var test = R.id.mAddPlaceLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
+
         val view = inflater.inflate(R.layout.controller_add_property, container, false)
 
         view.pb_add_property.gone()

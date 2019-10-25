@@ -32,6 +32,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         context = parent.context
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
+
         return ViewHolder(view)
     }
 
@@ -43,6 +44,8 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+
         val currentProperty = properties?.get(position)
 
         holder.propertyName.text = currentProperty?.property_name

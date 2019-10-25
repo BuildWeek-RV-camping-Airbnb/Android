@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/motion_scene"
     tools:context=".ui.activities.MainActivity"
+
     >
 
     <com.google.android.material.appbar.AppBarLayout
@@ -23,12 +24,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vRecycle"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_main_add_property"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/app_bar"
-        tools:layout_editor_absoluteX="32dp" />
+        tools:layout_editor_absoluteX="32dp"
+        android:background="@color/colorTransparent"
+
+
+        />
 
     <Button
+
+        android:padding="16dp"
         android:background="@drawable/ripple"
         android:id="@+id/btn_main_add_property"
         style="@style/AppTheme.RoundedCornerMaterialButton"

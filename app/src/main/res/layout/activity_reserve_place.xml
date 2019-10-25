@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/root_layout"
+    android:background="@drawable/gradient_animation"
+    >
 
     <ImageView
+
         android:id="@+id/iv_property_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
@@ -17,6 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,6 +30,8 @@
         app:layout_constraintTop_toBottomOf="@id/iv_property_image" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,6 +41,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_property_name" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,6 +52,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_property_description" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +63,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_property_address" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,6 +74,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_property_city" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,6 +85,8 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_property_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,6 +97,8 @@
 
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -93,6 +111,8 @@
         app:layout_constraintTop_toBottomOf="@id/tv_property_state" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_end"
         android:text="@string/end_date"
         app:layout_constraintTop_toBottomOf="@id/tv_reserve_start"
@@ -103,6 +123,8 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_date_start"
         android:textSize="32sp"
         android:layout_margin="8dp"
@@ -115,6 +137,8 @@
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:fontFamily="@font/roboto"
+        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_date_end"
         android:text="@string/yyyy_mm_dd"
         android:textSize="32sp"
@@ -125,6 +149,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:padding="16dp"
         android:background="@drawable/ripple"
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:id="@+id/btn_property_reserve"
