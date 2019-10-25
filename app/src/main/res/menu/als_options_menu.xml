@@ -5,15 +5,15 @@
 
         <item
             android:id="@+id/menu_see_on_map"
-            android:title="See On Map"
+            android:title="@string/see_on_map"
             android:icon="@drawable/location_icon"/>
 
         <item
             android:id="@+id/menu_sort"
-            android:title="Sort"/>
+            android:title="@string/sort"/>
         <item
             android:id="@+id/menu_sign_out"
-            android:title="Sign Out"/>
+            android:title="@string/sign_out"/>
 
     </group>
 </menu>
