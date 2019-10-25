@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,17 +12,23 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PropertiesAdapter(private var properties: MutableList<Property>?) :
     RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
@@ -48,6 +55,14 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
 
         val currentProperty = properties?.get(position)
 
+        // If the url link is longer than 10, then get the image from the url. Else use a default image.
+        val imageSuffix = currentProperty?.image.toString()
+        if(currentProperty?.image.toString().endsWith("jpg")){
+            Picasso.get().load(currentProperty?.image).into(holder.image)
+        }
+
+
+
         holder.propertyName.text = currentProperty?.property_name
         holder.description.text = currentProperty?.description
         holder.address.text = currentProperty?.address
@@ -55,7 +70,14 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         holder.state.text = currentProperty?.state
         val price = "$" + currentProperty?.price.toString() + " Per Day"
         holder.price.text = price
-        val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        var rating: String = ""
+        if(currentProperty?.rating == null) {
+            rating = "No Reviews Yet"
+        }
+        else{
+            rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        }
+
         holder.rating.text = rating
 
         if (LoginController.isOwner) {
@@ -66,6 +88,9 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
                 builder.setMessage("Are you sure you want to delete this property?")
                 builder.setPositiveButton("YES") { dialogInterface, i ->
                     holder.cardViewDeleteOnLongPress(position)
+                    if (currentProperty != null) {
+                        deleteProperty(currentProperty.id)
+                    }
                     Toast.makeText(
                         context,
                         "Property has been successfully deleted",
@@ -121,6 +146,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val image: ImageView? = itemView.iv_property_image
         val propertyName: TextView = itemView.tv_property_name
         val description: TextView = itemView.tv_property_description
         val address: TextView = itemView.tv_property_address
@@ -139,6 +165,26 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
     fun updateRV(newList: MutableList<Property>?) {
         properties = newList
         notifyDataSetChanged()
+    }
+
+    fun deleteProperty(id: Int){
+        val call: Call<Void> = ApiBuilder.create().deleteProperty(LoginController.token, id)
+        call.enqueue(object: Callback<Void> {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.i("Add Property", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.i("Delete Property", "OnResponseSuccess ${response.message()}")
+
+                }
+                else{
+                    Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
+        })
     }
 
 }
