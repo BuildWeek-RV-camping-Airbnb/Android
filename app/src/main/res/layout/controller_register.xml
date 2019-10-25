@@ -16,11 +16,9 @@
         android:layout_margin="16dp"
         app:boxBackgroundColor="@color/design_default_color_background"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".1">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -122,25 +120,27 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:padding="16dp"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:id="@+id/btn_register_create"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/complete_registration"
-        app:layout_constraintTop_toBottomOf="@id/cb_register_land_owner"
+        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_registration"
+        app:layout_constraintTop_toBottomOf="@+id/cb_register_land_owner"
         tools:layout_editor_absoluteX="32dp" />
 
     <Button
-        android:padding="16dp"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:id="@+id/btn_cancel_registration"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:padding="16dp"
         android:text="@string/cancel"
-        app:layout_constraintTop_toBottomOf="@id/btn_register_create"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
