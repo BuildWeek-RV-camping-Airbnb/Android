@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.Lambda.rv_camping.R
-import com.Lambda.rv_camping.model.Properties
+
 import com.Lambda.rv_camping.model.RvLocation
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -28,12 +28,11 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_show_map)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
+            .findFragmentById(R.id.map1) as SupportMapFragment
         mapFragment.getMapAsync(this)
         Companion.checkPermission(this)
         loadLocation()
     }
-
     var ACCESSLOCATION = 123
     fun getUserLocation() {
         Toast.makeText(this, "User Location Access on", Toast.LENGTH_LONG).show()
@@ -43,7 +42,6 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         var myThread = MyThread()
         myThread.start()
     }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -60,7 +58,6 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -73,9 +70,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
     }
-
     var location: Location? = null
-
     // Get User location
     inner class MyLocationListener : LocationListener {
         init {
@@ -83,33 +78,26 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             location!!.longitude = 0.0
             location!!.latitude = 0.0
         }
-
         override fun onLocationChanged(p0: Location?) {
             location = p0
         }
-
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
-
         override fun onProviderEnabled(p0: String?) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
-
         override fun onProviderDisabled(p0: String?) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }
-
     var oldLocation: Location? = null
-
     inner class MyThread : Thread() {
         init {
             oldLocation = Location("Start")
             oldLocation!!.longitude = 0.0
             oldLocation!!.latitude = 0.0
         }
-
         override fun run() {
             while (true) {
                 try {
@@ -126,11 +114,11 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
                                 .position(sydney)
                                 .title("Me")
                                 .snippet("This is my Location")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.campfire))
+                          //      .icon(BitmapDescriptorFactory.fromResource(R.drawable.campfire))
                         )
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f))
                         // show locations
-                        for (i in 0..listLocation.size - 1) {
+                        for (i in 0 until listLocation.size) {
                             var newLocation = listLocation[i]
                             val rvLocation = LatLng(
                                 newLocation.location!!.latitude,
@@ -141,7 +129,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
                                     .position(rvLocation)
                                     .title(newLocation.name)
                                     .snippet(newLocation.des)
-                                    .icon(BitmapDescriptorFactory.fromResource(newLocation.image!!))
+                                   .icon(BitmapDescriptorFactory.fromResource(newLocation.image!!))
                             )
                             listLocation[i] = newLocation
                             Toast.makeText(
@@ -157,7 +145,6 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
-
     var listLocation = ArrayList<RvLocation>()
     fun loadLocation() {
         listLocation.add(
@@ -188,7 +175,6 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             )
         )
     }
-
     companion object {
         fun checkPermission(mapsActivity: ShowMapActivity) {
             if (Build.VERSION.SDK_INT >= 23) {
