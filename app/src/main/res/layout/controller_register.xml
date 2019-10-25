@@ -124,24 +124,15 @@
         style="@style/AppTheme.RoundedCornerMaterialButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="16dp"
         android:padding="16dp"
         android:text="@string/complete_registration"
-        app:layout_constraintBottom_toTopOf="@+id/btn_cancel_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="16dp"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_cancel_registration"
-        style="@style/AppTheme.RoundedCornerMaterialButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="16dp"
-        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cb_register_land_owner" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

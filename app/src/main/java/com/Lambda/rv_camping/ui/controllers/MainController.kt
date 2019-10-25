@@ -77,6 +77,7 @@ class MainController : Controller{
         view?.vRecycle?.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = PropertiesAdapter(LoginController.properties)
+
         }
 
     }

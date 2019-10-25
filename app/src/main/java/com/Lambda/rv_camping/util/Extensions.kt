@@ -23,3 +23,7 @@ fun View.gone() {
 fun plus(properties: MutableList<Properties>):Boolean{
     return true
 }
+operator fun View.minus(properties: MutableList<Properties>):Boolean{
+    return true
+}
+

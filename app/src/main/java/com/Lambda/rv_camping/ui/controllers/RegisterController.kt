@@ -58,9 +58,9 @@ class RegisterController : Controller() {
             }
         }
 
-        view.btn_cancel_registration.setOnClickListener {
-            router.popToRoot()
-        }
+      // view.btn_cancel_registration.setOnClickListener {
+      //     router.popToRoot()
+      // }
 
         return view
     }
