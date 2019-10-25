@@ -88,7 +88,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
         override fun onProviderDisabled(p0: String?) {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+           // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }
     var oldLocation: Location? = null
@@ -173,6 +173,47 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 37.781662,
                 -122.412253
             )
+        )
+        listLocation.add(
+
+
+
+
+            RvLocation(
+
+
+
+
+                "Shoreline",
+
+
+
+
+                "Shoreline Lake BoatHouse",
+
+
+
+
+                R.drawable.campfire,
+
+
+
+
+                37.4300,
+
+
+
+
+                -122.0888
+
+
+
+
+            )
+
+
+
+
         )
     }
     companion object {
