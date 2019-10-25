@@ -34,4 +34,7 @@
     <string name="title">Title</string>
     <string name="this_great_camping_spot_is_full_of_trees_and_bugs_that_bite_not_to_mention_wild_animals_trust_me_you_will_love_it">this great camping spot is full of trees and bugs that bite. Not to mention wild animals. Trust me! You will love it!</string>
     <string name="add_property">Add Property</string>
+    <string name="property_name">Property Name</string>
+    <string name="description">Description</string>
+    <string name="address">Address</string>
 </resources>
