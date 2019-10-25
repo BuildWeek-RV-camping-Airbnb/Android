@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_see_on_map -> {
 
                 player?.start()
-                startActivity(Intent(this, MapsActivity::class.java))
+                startActivity(Intent(this, ShowMapActivity::class.java))
             }
             R.id.menu_sort -> {
                 player?.start()
