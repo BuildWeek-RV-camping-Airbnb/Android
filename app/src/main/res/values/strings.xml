@@ -43,4 +43,5 @@
     <string name="see_on_map">See On Map</string>
     <string name="sort">Sort</string>
     <string name="sign_out">Sign Out</string>
+    <string name="image_url_optional">Image URL (Optional)</string>
 </resources>

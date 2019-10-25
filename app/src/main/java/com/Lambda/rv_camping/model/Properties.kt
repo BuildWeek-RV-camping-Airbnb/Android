@@ -24,6 +24,7 @@ data class NewProperty(
     var address: String,
     var city: String,
     var state: String,
+    val image: String?,
     var price: Int,
     var rating: Number,
     var owner_id: Int

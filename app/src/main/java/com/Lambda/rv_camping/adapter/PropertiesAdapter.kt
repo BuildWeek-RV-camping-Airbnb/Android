@@ -57,7 +57,9 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
 
         // If the url link is longer than 10, then get the image from the url. Else use a default image.
         val imageSuffix = currentProperty?.image.toString()
-        if(currentProperty?.image.toString().endsWith("jpg")){
+        if((currentProperty?.image.toString().endsWith("jpeg")) ||
+            (currentProperty?.image.toString().endsWith("jpg")) ||
+            (currentProperty?.image.toString().contains("auto"))){
             Picasso.get().load(currentProperty?.image).into(holder.image)
         }
 
