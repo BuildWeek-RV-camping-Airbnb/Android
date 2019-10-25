@@ -42,6 +42,7 @@ class AddPropertyController : Controller {
     lateinit var city: String
     lateinit var state: String
     private var price: Int = 0
+    private var image_url: String? = null
     private var test = R.id.mAddPlaceLayout
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
@@ -57,6 +58,7 @@ class AddPropertyController : Controller {
             validateCity()
             validateState()
             validatePrice()
+            image_url = view.text_input_add_image?.editText?.text.toString().trim()
 
             if(validateAllData())
                 createProperty()
@@ -174,7 +176,7 @@ class AddPropertyController : Controller {
     // Response is empty
     fun createProperty(){
         view?.pb_add_property?.show()
-        val call:Call<Void> = ApiBuilder.create().createProperty(LoginController.token, NewProperty(propertyName, description, address, city, state, price, 3, 5))
+        val call:Call<Void> = ApiBuilder.create().createProperty(LoginController.token, NewProperty(propertyName, description, address, city, state, image_url, price, 3, 5))
         call.enqueue(object: Callback<Void>{
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.i("Add Property", "OnFailure ${t.message}")
