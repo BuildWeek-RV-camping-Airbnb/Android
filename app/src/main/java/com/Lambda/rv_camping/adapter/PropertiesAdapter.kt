@@ -117,6 +117,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
                 intent.putExtra("state", currentProperty?.state)
                 intent.putExtra("price", price)
                 intent.putExtra("rating", rating)
+                intent.putExtra("image", currentProperty?.image)
 
 
                 var btnClicked: Boolean = false

@@ -13,6 +13,7 @@ import com.Lambda.rv_camping.ui.controllers.MainController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import com.Lambda.rv_camping.util.toast
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_reserve_place.*
 
 class ReservePlaceActivity() : AppCompatActivity() {
@@ -44,6 +45,7 @@ class ReservePlaceActivity() : AppCompatActivity() {
         val state = intent.getStringExtra("state")
         val price = intent.getStringExtra("price")
         val rating = intent.getStringExtra("rating")
+        val image = intent.getStringExtra("image")
         val startDate = intent.getStringExtra("startDate")
         val endDate = intent.getStringExtra("endDate")
 
@@ -54,6 +56,7 @@ class ReservePlaceActivity() : AppCompatActivity() {
         tv_property_state.text = state
         tv_property_price.text = price
         tv_property_rating.text = rating
+        Picasso.get().load(image).into(iv_property_image)
         tv_reserve_date_start.text = endDate ?: "YYYY-MM-DD"
         tv_reserve_date_end.text = startDate ?: "YYYY-MM-DD"
 
