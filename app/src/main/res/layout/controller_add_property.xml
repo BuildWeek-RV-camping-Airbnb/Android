@@ -134,8 +134,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:background="@drawable/ripple"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:id="@+id/btn_property_add"
-        android:text="Add Property"
+        android:text="@string/add_property"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

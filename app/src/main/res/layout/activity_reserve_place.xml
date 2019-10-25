@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="PROPERTY NAME GOES HERE"
+        android:text="@string/property_name_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_property_image" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="DESCRIPTION GOES HERE"
+        android:text="@string/description_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_name" />
 
@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="ADDRESS GOES HERE"
+        android:text="@string/address_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_property_description" />
 
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="CITY GOES HERE"
+        android:text="@string/city_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_address" />
 
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="STATE GOES HERE"
+        android:text="@string/state_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_city" />
 
@@ -65,8 +65,8 @@
         android:id="@+id/tv_property_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:text="PRICE GOES HERE"
+        android:layout_marginEnd="8dp"
+        android:text="@string/price_goes_here"
         app:layout_constraintTop_toTopOf="@id/tv_property_city"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -74,8 +74,8 @@
         android:id="@+id/tv_property_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:text="RATING GOES HERE"
+        android:layout_marginEnd="8dp"
+        android:text="@string/rating_goes_here"
         app:layout_constraintBottom_toBottomOf="@id/tv_property_state"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -84,7 +84,7 @@
         android:id="@+id/tv_reserve_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Date:"
+        android:text="@string/start_date"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingBottom="32sp"
@@ -94,7 +94,7 @@
 
     <TextView
         android:id="@+id/tv_reserve_end"
-        android:text="End Date:"
+        android:text="@string/end_date"
         app:layout_constraintTop_toBottomOf="@id/tv_reserve_start"
         android:layout_margin="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,13 +110,13 @@
         app:layout_constraintTop_toBottomOf="@id/tv_property_rating"
         app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
         android:paddingBottom="32sp"
-        android:text="YYYY-MM-DD"
+        android:text="@string/yyyy_mm_dd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/tv_reserve_date_end"
-        android:text="YYYY-MM-DD"
+        android:text="@string/yyyy_mm_dd"
         android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@id/tv_reserve_date_start"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,11 +125,13 @@
         android:layout_height="wrap_content"/>
 
     <Button
+        android:background="@drawable/ripple"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
         android:id="@+id/btn_property_reserve"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Reserve Property"
+        android:text="@string/reserve_property"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
