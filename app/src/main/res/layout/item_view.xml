@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,6 +12,7 @@
         android:id="@+id/mmmm"
         android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -76,17 +78,15 @@
             app:layout_constraintVertical_bias="0.811" />
 
         <Button
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/mButtonReserve"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
             android:text="@string/reserve"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.923"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
-            app:layout_constraintVertical_bias="0.783" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mDetailsTexts"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
