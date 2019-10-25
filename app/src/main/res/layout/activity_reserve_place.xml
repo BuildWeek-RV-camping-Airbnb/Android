@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/root_layout"
@@ -19,122 +20,132 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textSize="16sp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/white"
         android:id="@+id/tv_property_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/property_name_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_property_image" />
 
     <TextView
+        android:textSize="12sp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/white"
         android:id="@+id/tv_property_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/description_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_name" />
 
     <TextView
+        android:textSize="16sp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/white"
         android:id="@+id/tv_property_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/address_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_property_description" />
 
     <TextView
+        android:textSize="16sp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/white"
         android:id="@+id/tv_property_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/city_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_address" />
 
     <TextView
+        android:textSize="16sp"
         android:fontFamily="@font/roboto"
         android:textColor="@android:color/white"
         android:id="@+id/tv_property_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:text="@string/state_goes_here"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_city" />
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
         android:id="@+id/tv_property_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/price_goes_here"
-        app:layout_constraintTop_toTopOf="@id/tv_property_city"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_property_image" />
+
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
         android:id="@+id/tv_property_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/rating_goes_here"
-        app:layout_constraintBottom_toBottomOf="@id/tv_property_state"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_property_price" />
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
+
         android:id="@+id/tv_reserve_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/start_date"
-        android:textSize="32sp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/roboto"
         android:paddingBottom="32sp"
-        android:layout_margin="8dp"
+        android:text="@string/start_date"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
+        app:layout_constraintEnd_toStartOf="@+id/tv_reserve_date_start"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_property_state" />
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_end"
-        android:text="@string/end_date"
-        app:layout_constraintTop_toBottomOf="@id/tv_reserve_start"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textSize="32sp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/end_date"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_reserve_date_end"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_reserve_start" />
 
     <TextView
-        android:fontFamily="@font/roboto"
-        android:textColor="@android:color/white"
         android:id="@+id/tv_reserve_date_start"
-        android:textSize="32sp"
-        android:layout_margin="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_property_rating"
-        app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/roboto"
         android:paddingBottom="32sp"
         android:text="@string/yyyy_mm_dd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_property_reserve"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_property_state" />
 
     <TextView
         android:fontFamily="@font/roboto"
@@ -144,7 +155,7 @@
         android:textSize="32sp"
         app:layout_constraintTop_toBottomOf="@id/tv_reserve_date_start"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
