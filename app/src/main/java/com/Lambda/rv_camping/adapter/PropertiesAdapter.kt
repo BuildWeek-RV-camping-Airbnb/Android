@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
@@ -22,6 +23,7 @@ import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
 import retrofit2.Call
@@ -49,6 +51,14 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val currentProperty = properties?.get(position)
+
+        // If the url link is longer than 10, then get the image from the url. Else use a default image.
+        val imageSuffix = currentProperty?.image.toString()
+        if(currentProperty?.image.toString().endsWith("jpg")){
+            Picasso.get().load(currentProperty?.image).into(holder.image)
+        }
+
+
 
         holder.propertyName.text = currentProperty?.property_name
         holder.description.text = currentProperty?.description
@@ -133,6 +143,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+        val image: ImageView? = itemView.iv_property_image
         val propertyName: TextView = itemView.tv_property_name
         val description: TextView = itemView.tv_property_description
         val address: TextView = itemView.tv_property_address
