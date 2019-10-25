@@ -1,13 +1,19 @@
 package com.Lambda.rv_camping.model
 
+import android.location.Location
 import java.io.Serializable
-/*this data class is create for data that is specifically used for maps, to get users coordinates*/
-data class RvLocation(
-    val street: String,
-    val city: String,
-    val state: String,
-    val postcode: String,
-    val coordinates: ContactLocationCoordinates
-) : Serializable
 
-data class ContactLocationCoordinates(val latitude: Double, val longitude: Double): Serializable
+class RvLocation{
+    var name:String?=null
+    var des:String?=null
+    var image:Int?=null
+    var location : Location?=null
+    constructor(name:String, des:String, image:Int, lat:Double, log:Double){
+        this.name = name
+        this.des = des
+        this.image = image
+        this.location = Location(name)
+        this.location!!.latitude = lat
+        this.location!!.longitude = log
+    }
+}
