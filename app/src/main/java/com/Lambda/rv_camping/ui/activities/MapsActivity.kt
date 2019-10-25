@@ -25,7 +25,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     companion object {
         private const val FINE_LOCATION_REQUEST_CODE = 5
-       
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
