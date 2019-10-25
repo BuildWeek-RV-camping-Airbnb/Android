@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,12 +17,16 @@ import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.model.CampingSpots
 import com.Lambda.rv_camping.model.Properties
 import com.Lambda.rv_camping.model.Property
+import com.Lambda.rv_camping.networking.ApiBuilder
 import com.Lambda.rv_camping.ui.activities.ReservePlaceActivity
 import com.Lambda.rv_camping.ui.controllers.LoginController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
 import com.Lambda.rv_camping.ui.fragments.DateFragmentTo
 import kotlinx.android.synthetic.main.item_property_view.view.*
 import kotlinx.android.synthetic.main.item_view.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class PropertiesAdapter(private var properties: MutableList<Property>?) :
     RecyclerView.Adapter<PropertiesAdapter.ViewHolder>() {
@@ -52,7 +57,14 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         holder.state.text = currentProperty?.state
         val price = "$" + currentProperty?.price.toString() + " Per Day"
         holder.price.text = price
-        val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        var rating: String = ""
+        if(currentProperty?.rating == null) {
+            rating = "No Reviews Yet"
+        }
+        else{
+            rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        }
+
         holder.rating.text = rating
 
         if (LoginController.isOwner) {
@@ -63,6 +75,9 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
                 builder.setMessage("Are you sure you want to delete this property?")
                 builder.setPositiveButton("YES") { dialogInterface, i ->
                     holder.cardViewDeleteOnLongPress(position)
+                    if (currentProperty != null) {
+                        deleteProperty(currentProperty.id)
+                    }
                     Toast.makeText(
                         context,
                         "Property has been successfully deleted",
@@ -136,6 +151,26 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
     fun updateRV(newList: MutableList<Property>?) {
         properties = newList
         notifyDataSetChanged()
+    }
+
+    fun deleteProperty(id: Int){
+        val call: Call<Void> = ApiBuilder.create().deleteProperty(LoginController.token, id)
+        call.enqueue(object: Callback<Void> {
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                Log.i("Add Property", "OnFailure ${t.message}")
+            }
+
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if(response.isSuccessful){
+                    Log.i("Delete Property", "OnResponseSuccess ${response.message()}")
+
+                }
+                else{
+                    Log.i("Add Property", "OnResponseFailure ${response.errorBody()}")
+                }
+            }
+
+        })
     }
 
 }
