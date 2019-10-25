@@ -22,14 +22,11 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
-    private lateinit var  mapFragment: SupportMapFragment
 
-    private var latitude: Double = 0.toDouble()
-    private var longitude: Double = 0.toDouble()
-    private lateinit var location: Location
-    private lateinit var locationManager: LocationManager
-    val ACCESS_FINE_LOCATION = 1
-    val ACCESS_COARSE_LOCATION= 2
+    companion object {
+        private const val FINE_LOCATION_REQUEST_CODE = 5
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,14 +35,21 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+            FINE_LOCATION_REQUEST_CODE
+        )
+
+
     }
 
-    private fun loadMapData() {
+    /* private fun loadMapData() {
         mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-    }
+    }*/
 
     /**
      * Manipulates the map once available.
@@ -58,27 +62,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
 
+        mMap = googleMap
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                ACCESS_FINE_LOCATION
-            )
-
-        }
-            //googleMap= googleMap1
-        }
+        //LONDON BABY
+        val london = LatLng(51.509865, -0.118092)
+        //sets marker position
+        mMap.addMarker(MarkerOptions().position((london)))
+        //moves camera
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(london))
+        //googleMap= googleMap1
+    }
+}
 
 
-
-
+/*
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -123,5 +120,4 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
             }
         }
-    }
-    }
+    }*/
