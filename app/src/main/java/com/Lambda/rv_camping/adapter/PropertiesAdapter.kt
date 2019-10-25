@@ -52,7 +52,14 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         holder.state.text = currentProperty?.state
         val price = "$" + currentProperty?.price.toString() + " Per Day"
         holder.price.text = price
-        val rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        var rating: String = ""
+        if(currentProperty?.rating == null) {
+            rating = "No Reviews Yet"
+        }
+        else{
+            rating = "Rating: " + currentProperty?.rating.toString() + "/5"
+        }
+
         holder.rating.text = rating
 
         if (LoginController.isOwner) {
