@@ -9,11 +9,25 @@ import androidx.fragment.app.DialogFragment
 import kotlinx.android.synthetic.main.activity_reserve_place.*
 import java.util.*
 
-class DateFragmentFrom: DialogFragment(), DatePickerDialog.OnDateSetListener{
+class DateFragmentFrom : DialogFragment(), DatePickerDialog.OnDateSetListener {
+
+    companion object {
+        var endDate: String? = null
+    }
 
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, day: Int) {
-        val editable = SpannableStringBuilder("$year-$month-$day")
-        activity?.mTextDateFrom?.text = editable
+        var fixedMonth: String = "${month + 1}"
+        var fixedDay: String = day.toString()
+        if (month + 1 < 10) {
+            fixedMonth = "0${month + 1}"
+        }
+
+        if (day < 10) {
+            fixedDay = "0${day.toString()}"
+        }
+        val editable = SpannableStringBuilder("$year-${fixedMonth}-$fixedDay")
+        endDate = editable.toString()
+        activity?.tv_reserve_date_start?.text = editable
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

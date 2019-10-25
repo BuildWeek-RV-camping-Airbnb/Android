@@ -1,28 +1,30 @@
 package com.Lambda.rv_camping.ui.activities
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.Lambda.rv_camping.R
-import com.Lambda.rv_camping.adapter.PropertiesAdapter
-import com.Lambda.rv_camping.adapter.RecyclerRVAdapter
 import com.Lambda.rv_camping.model.CampingSpots
-import com.Lambda.rv_camping.ui.controllers.AddPropertyController
 import com.Lambda.rv_camping.ui.controllers.LoginController
-import com.Lambda.rv_camping.ui.controllers.MainController
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
-import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.view.*
-import okhttp3.internal.wait
+
 
 class MainActivity : AppCompatActivity() {
 
+    var player: MediaPlayer? = null
+    var test: Int = R.layout.activity_main
+        get()= field
+        set(value){
+            field = value
+        }
     private lateinit var router: Router
     private val container: ViewGroup by lazy {
         this.findViewById<ViewGroup>(R.id.cl_activity_main_parent)
@@ -37,10 +39,12 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(test)
 
 
 
+
+        player = MediaPlayer.create(this, R.raw.accomplished)
 
         /*vRecycle.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -52,15 +56,15 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             //adapter = PropertiesAdapter(MainController.propertyList)
         }
-        
+
         // Could have also just use cl_activity_main_parent instead of container
-            router = Conductor.attachRouter(this, container, savedInstanceState)
-            if (!router.hasRootController()) {
-                router.setRoot(RouterTransaction.with(LoginController()))
+        router = Conductor.attachRouter(this, container, savedInstanceState)
+        if (!router.hasRootController()) {
+            router.setRoot(RouterTransaction.with(LoginController()))
 
 
 
-            }
+        }
 
 
 
@@ -74,17 +78,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.menu_add_property -> startActivity(Intent(this, ReservePlaceActivity::class.java))
-            R.id.menu_see_on_map -> startActivity(Intent(this, MapsActivity::class.java))
-            R.id.menu_sort -> Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
-            R.id.menu_sign_out -> startActivity(Intent(this, MainActivity::class.java))
+            R.id.menu_see_on_map -> {
+
+                player?.start()
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
+            R.id.menu_sort -> {
+                player?.start()
+                Toast.makeText(this, "Your content has been added to the bottom", Toast.LENGTH_LONG).show()
+            }
+            R.id.menu_sign_out -> {
+                player?.start()
+                startActivity(Intent(this, MainActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
 
 
+
     override fun onBackPressed(){
+        player?.start()
         router.popCurrentController()
     }
 

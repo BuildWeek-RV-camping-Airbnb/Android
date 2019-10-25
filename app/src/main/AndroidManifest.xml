@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/als_rv_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -31,7 +31,10 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="@string/ApiKey" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity
             android:name=".ui.activities.MapsActivity"
@@ -44,7 +47,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activities.ReservePlaceActivity" />
-        <activity android:name=".ui.activities.AddPlaceActivity" />
     </application>
 
 </manifest>

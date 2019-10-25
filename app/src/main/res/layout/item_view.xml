@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
 
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemView"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="220dp">
     <androidx.cardview.widget.CardView
@@ -12,6 +12,7 @@
         android:id="@+id/mmmm"
         android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,7 +21,7 @@
             android:id="@+id/mAddressText"
             android:layout_width="232dp"
             android:layout_height="19dp"
-            android:text="15999 Jewell Ave"
+            android:text="@string/_15999_jewell_ave"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.551"
@@ -32,7 +33,7 @@
             android:id="@+id/mTitleText"
             android:layout_width="232dp"
             android:layout_height="19dp"
-            android:text="Title"
+            android:text="@string/title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.551"
@@ -56,7 +57,7 @@
             android:id="@+id/mDetailsTexts"
             android:layout_width="221dp"
             android:layout_height="56dp"
-            android:text="this great camping spot is full of trees and bugs that bite. Not to mention wild animals. Trust me! You will love it!"
+            android:text="@string/this_great_camping_spot_is_full_of_trees_and_bugs_that_bite_not_to_mention_wild_animals_trust_me_you_will_love_it"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.4"
@@ -68,7 +69,7 @@
             android:id="@+id/mTextReservedDateAndPrice"
             android:layout_width="107dp"
             android:layout_height="37dp"
-            android:text="Reserve"
+            android:text="@string/reserve"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.194"
@@ -78,15 +79,14 @@
 
         <Button
             android:id="@+id/mButtonReserve"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Reserve"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintHorizontal_bias="0.923"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mDetailsTexts"
-            app:layout_constraintVertical_bias="0.783" />
+            android:padding="16dp"
+            android:text="@string/reserve"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mDetailsTexts"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

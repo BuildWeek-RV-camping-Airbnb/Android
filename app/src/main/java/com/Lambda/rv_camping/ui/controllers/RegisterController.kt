@@ -1,5 +1,6 @@
 package com.Lambda.rv_camping.ui.controllers
 
+import android.graphics.drawable.AnimationDrawable
 import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import retrofit2.Response
 
 class RegisterController : Controller() {
 
+
     private var validatedFirstName: Boolean = false
     private var validatedLastName: Boolean = false
     private var validatedUsername: Boolean = false
@@ -35,12 +37,18 @@ class RegisterController : Controller() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val view = inflater.inflate(R.layout.controller_register, container, false)
 
+
+
         view.btn_register_create.setOnClickListener {
             validateFirstName()
             validateLastName()
             validateUsername()
             validateEmail()
             validatePassword()
+
+            if(view.cb_register_land_owner.isChecked){
+                isOwner = true
+            }
 
             // If all the information is good, then register the user and go back to login
             if (validateAllData()) {
@@ -208,9 +216,7 @@ class RegisterController : Controller() {
 
 }
 /*
-if(view.cb_register_land_owner.isChecked){
-            isOwner = true
-        }
+
 
     private fun createUserr(){
         val call:Call<RegisterResponse> = ServiceBuilder.create().createUser(NewUser(firstName,lastName,email,username,password))

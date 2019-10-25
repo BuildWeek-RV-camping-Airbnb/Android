@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.Lambda.rv_camping.R
-import com.Lambda.rv_camping.util.GpsTracker
+
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -23,7 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var  mapFragment: SupportMapFragment
-    private lateinit var gpsTracker: GpsTracker
+
     private var latitude: Double = 0.toDouble()
     private var longitude: Double = 0.toDouble()
     private lateinit var location: Location
@@ -44,7 +44,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
-        gpsTracker = GpsTracker(this)
+
     }
 
     /**
@@ -72,40 +72,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 ACCESS_FINE_LOCATION
             )
 
-        } else {
-            gpsTracker(googleMap)
+        }
             //googleMap= googleMap1
         }
-    }
 
-    private fun gpsTracker(googleMap1: GoogleMap){
-        if (gpsTracker.canGetLoaction()) {
-            locationManager = this.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            location = locationManager.getLastKnownLocation(NETWORK_PROVIDER)//This error is all thanks to android studio being weird
-            gpsTracker.onLocationChanged(location)
-            latitude = gpsTracker.getLatitude()
-            longitude = gpsTracker.getLongitude()
-            mMap = googleMap1
-            // Add a marker in Sydney and move the camera
-            Handler().postDelayed({
-                val pune = LatLng(latitude, longitude)
-                mMap.addMarker(MarkerOptions().position(pune).title("Oh geeeeeeez! You found me at my address!\n Please enjoy the music\n While i go hide again"))
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(pune))
-                mMap.animateCamera(CameraUpdateFactory.zoomIn())
-                mMap.animateCamera(CameraUpdateFactory.zoomTo(8.0f))
-                //mMap.setMaxZoomPreference(14.0f);
-                mMap.maxZoomLevel
-            }, 1500)
-            val builder = AlertDialog.Builder(this)
-            builder.setCancelable(true)
-            builder.setTitle("Location")
-            builder.setMessage("This is your current location: Latitude: $latitude Longitude: $longitude")
-            builder.setPositiveButton("OK") { dialogInterface, i -> dialogInterface.dismiss() }
-            builder.show()
-        } else {
-            gpsTracker.openSettings()//Open the settings alert to enable the GPS sevice
-        }
-    }
+
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -153,6 +125,3 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
     }
-
-
-

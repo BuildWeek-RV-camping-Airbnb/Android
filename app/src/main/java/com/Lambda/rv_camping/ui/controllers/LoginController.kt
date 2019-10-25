@@ -32,7 +32,7 @@ class LoginController : Controller(){
     companion object{
         var successfulLogin:Boolean = false
         lateinit var token: String
-
+        var isOwner: Boolean = false
         var properties: MutableList<Property>? = null
     }
 
@@ -67,13 +67,6 @@ class LoginController : Controller(){
                     .popChangeHandler(HorizontalChangeHandler()))
         }
 
-        //TODO REMOVE THIS ON OFFICIAL RELEASE!!!
-        view.btn_login_skip.setOnClickListener {
-
-            router.pushController(RouterTransaction.with(MainController())
-                .pushChangeHandler(HorizontalChangeHandler())
-                .popChangeHandler(HorizontalChangeHandler()))
-        }
         return view
     }
 
@@ -153,6 +146,7 @@ class LoginController : Controller(){
                     token = response.body()!!.token
                     activity?.toastRegister("$username")
                     successfulLogin = true
+                    isOwner = response.body()!!.owner
                 }
                 else{
                     Log.i("Login", "Failure ${response.errorBody()}")
