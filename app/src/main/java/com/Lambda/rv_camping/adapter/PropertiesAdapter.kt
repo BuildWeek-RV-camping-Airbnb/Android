@@ -39,6 +39,7 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
         context = parent.context
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_property_view, parent, false)
+
         return ViewHolder(view)
     }
 
@@ -50,6 +51,8 @@ class PropertiesAdapter(private var properties: MutableList<Property>?) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+
         val currentProperty = properties?.get(position)
 
         // If the url link is longer than 10, then get the image from the url. Else use a default image.

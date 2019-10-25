@@ -2,17 +2,22 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="32dp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/gradient_animation"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
+            android:textColor="@android:color/white"
             android:id="@+id/iv_property_image"
             android:src="@drawable/rv_camping"
             android:scaleType="centerCrop"
@@ -22,6 +27,7 @@
             android:layout_height="200dp"/>
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,6 +37,7 @@
             app:layout_constraintTop_toBottomOf="@id/iv_property_image" />
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_description"
             app:layout_constraintTop_toBottomOf="@id/tv_property_name"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,6 +47,7 @@
             android:text="@string/description_goes_here" />
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_address"
             android:text="@string/address_goes_here"
             app:layout_constraintTop_toBottomOf="@+id/tv_property_description"
@@ -49,6 +57,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_city"
             app:layout_constraintTop_toBottomOf="@id/tv_property_address"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,6 +67,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_state"
             android:text="@string/state_goes_here"
             android:layout_margin="8dp"
@@ -67,33 +77,37 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_price"
-            app:layout_constraintBottom_toBottomOf="@id/tv_property_city"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginEnd="8dp"
             android:text="@string/price_goes_here"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_property_image" />
 
         <TextView
+            android:textColor="@android:color/white"
             android:id="@+id/tv_property_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
             android:text="@string/rating_goes_here"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/tv_property_state"
-            android:layout_marginEnd="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_property_price" />
 
         <Button
-            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:id="@+id/btn_property_reserve"
-            android:text="@string/reserve_property"
-            android:layout_margin="8dp"
-            app:layout_constraintTop_toBottomOf="@id/tv_property_state"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_marginEnd="16dp"
+            android:padding="16dp"
+            android:text="@string/reserve_property"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_property_rating" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

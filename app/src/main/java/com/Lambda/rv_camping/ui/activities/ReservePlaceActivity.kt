@@ -3,9 +3,11 @@ package com.Lambda.rv_camping.ui.activities
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.Lambda.rv_camping.R
 import com.Lambda.rv_camping.ui.controllers.MainController
 import com.Lambda.rv_camping.ui.fragments.DateFragmentFrom
@@ -26,6 +28,12 @@ class ReservePlaceActivity() : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserve_place)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+
+        val animDrawable = root_layout.background as AnimationDrawable
+        animDrawable.setEnterFadeDuration(5)
+        animDrawable.setExitFadeDuration(2500)
+        animDrawable.start()
 
         player = MediaPlayer.create(this, R.raw.accomplished)
 

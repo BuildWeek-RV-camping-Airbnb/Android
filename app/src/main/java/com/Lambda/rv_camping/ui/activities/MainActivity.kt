@@ -1,6 +1,7 @@
 package com.Lambda.rv_camping.ui.activities
 
 import android.content.Intent
+import android.graphics.drawable.AnimationDrawable
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(test)
+
+
 
 
         player = MediaPlayer.create(this, R.raw.accomplished)
