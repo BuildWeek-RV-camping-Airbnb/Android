@@ -33,6 +33,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         Companion.checkPermission(this)
         loadLocation()
     }
+
     var ACCESSLOCATION = 123
     fun getUserLocation() {
         Toast.makeText(this, "User Location Access on", Toast.LENGTH_LONG).show()
@@ -42,6 +43,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         var myThread = MyThread()
         myThread.start()
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -58,6 +60,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -70,7 +73,9 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
     }
+
     var location: Location? = null
+
     // Get User location
     inner class MyLocationListener : LocationListener {
         init {
@@ -78,26 +83,33 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             location!!.longitude = 0.0
             location!!.latitude = 0.0
         }
+
         override fun onLocationChanged(p0: Location?) {
             location = p0
         }
+
         override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
+
         override fun onProviderEnabled(p0: String?) {
             //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
+
         override fun onProviderDisabled(p0: String?) {
             TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
         }
     }
+
     var oldLocation: Location? = null
+
     inner class MyThread : Thread() {
         init {
             oldLocation = Location("Start")
             oldLocation!!.longitude = 0.0
             oldLocation!!.latitude = 0.0
         }
+
         override fun run() {
             while (true) {
                 try {
@@ -114,7 +126,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
                                 .position(sydney)
                                 .title("Me")
                                 .snippet("This is my Location")
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.campfire_icon))
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.campfire))
                         )
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14f))
                         // show locations
@@ -145,13 +157,14 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
     }
+
     var listLocation = ArrayList<RvLocation>()
     fun loadLocation() {
         listLocation.add(
             RvLocation(
                 "UFO Site",
                 "Here is UFO Site",
-                R.drawable.campfire_icon,
+                R.drawable.campfire,
                 37.778999,
                 -122.401846
             )
@@ -160,7 +173,7 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             RvLocation(
                 "Camping Site in Utah",
                 "Not too far from you",
-                R.drawable.campfire_icon,
+                R.drawable.campfire,
                 37.794956,
                 -122.410494
             )
@@ -169,12 +182,13 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
             RvLocation(
                 "Forestry",
                 "Its always raining there",
-                R.drawable.campfire_icon,
+                R.drawable.campfire,
                 37.781662,
                 -122.412253
             )
         )
     }
+
     companion object {
         fun checkPermission(mapsActivity: ShowMapActivity) {
             if (Build.VERSION.SDK_INT >= 23) {
