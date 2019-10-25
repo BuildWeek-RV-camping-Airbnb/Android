@@ -56,7 +56,13 @@ class ReservePlaceActivity() : AppCompatActivity() {
         tv_property_state.text = state
         tv_property_price.text = price
         tv_property_rating.text = rating
-        Picasso.get().load(image).into(iv_property_image)
+
+        if((image.toString().endsWith("jpeg")) ||
+            (image.toString().endsWith("jpg")) ||
+            (image.toString().contains("auto"))){
+            Picasso.get().load(image).into(iv_property_image)
+        }
+
         tv_reserve_date_start.text = endDate ?: "YYYY-MM-DD"
         tv_reserve_date_end.text = startDate ?: "YYYY-MM-DD"
 
