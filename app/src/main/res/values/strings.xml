@@ -40,4 +40,7 @@
     <string name="state">State</string>
     <string name="_price">Price</string>
     <string name="rating">Rating</string>
+    <string name="see_on_map">See On Map</string>
+    <string name="sort">Sort</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
