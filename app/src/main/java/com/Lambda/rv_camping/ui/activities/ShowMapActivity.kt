@@ -174,7 +174,18 @@ class ShowMapActivity : AppCompatActivity(), OnMapReadyCallback {
                 -122.412253
             )
         )
+        listLocation.add(
+            RvLocation(
+                "Shoreline",
+                "Shoreline Lake BoatHouse",
+                R.drawable.campfire,
+                37.4300,
+                -122.0888
+            )
+        )
     }
+    /*Latitude: 37.4220
+Longitude: -122.0840*/
     companion object {
         fun checkPermission(mapsActivity: ShowMapActivity) {
             if (Build.VERSION.SDK_INT >= 23) {
